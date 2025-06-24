@@ -1,0 +1,280 @@
+{
+  "template": "Phasergame",
+  "theme": "light",
+  "header": {
+    "brand": {
+      "title": "SpeedStars 1",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "speedstarts"
+      },
+      "url": "/"
+    },
+    "nav": {
+      "items": [
+        {
+          "title": "New Games",
+          "url": "/new-games",
+          "icon": "RiSparkling2Line"
+        },
+        {
+          "title": "🔥 Hot Games",
+          "url": "/hotgames"
+          
+        },
+        {
+          "title": "WIKI",
+          "url": "/showcase",
+          "icon": "RiApps2Line"
+        }
+      ]
+    },
+    "buttons": [
+      {
+        "title": "Play Now",
+        "url": "https://eratogame.ai",
+        "target": "_blank",
+        "variant": "link",
+        "icon": "RiArrowRightUpLine"
+      }
+    ],
+    "show_sign": true,
+    "show_theme": true,
+    "show_locale": true
+  },
+  "hero": {
+    "title": "Ship Any AI Startups in hours, not days",
+    "highlight_text": "Ship Any",
+    "description": "eratogame is a NextJS boilerplate for building AI SaaS startups.<br/>Ship Fast with a variety of templates and components.",
+    "announcement": {
+      "label": "2025",
+      "title": "🎉 Happy New Year",
+      "url": "/#pricing"
+    },
+    "tip": "🎁 50% off before 2025",
+    "buttons": [
+      {
+        "title": "Get Started",
+        "icon": "RiFlashlightFill",
+        "url": "/#pricing",
+        "target": "_self",
+        "variant": "default"
+      },
+      {
+        "title": "Join Discord",
+        "icon": "RiDiscordFill",
+        "url": "https://discord.gg/HQNnrzjZQS",
+        "target": "_blank",
+        "variant": "outline"
+      }
+    ],
+    "show_happy_users": true,
+    "show_badge": false
+  },
+  "branding": {
+    "title": "eratogame is built on the shoulders of giants",
+    "items": [
+      {
+        "title": "Next.js",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "Next.js"
+        }
+      },
+      {
+        "title": "React",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "React"
+        }
+      },
+      {
+        "title": "TailwindCSS",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "TailwindCSS"
+        }
+      },
+      {
+        "title": "Shadcn/UI",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "Shadcn/UI"
+        }
+      },
+      {
+        "title": "Vercel",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "Vercel"
+        }
+      }
+    ]
+  },
+  
+
+  "introduce": {
+    "title": "About Speed Stars",
+    "description": "Experience the ultimate rush in Speed Stars, where every fraction of a second counts, and only the fastest test will rise to the top. Master your strides, run at full speed, and perform your best sprint skills. Jump into the race and prove you’re the ultimate speed runner.",
+    "sections": [
+      {
+        "title": "What is Speed Stars?",
+        "content": "Speed Stars is a competitive running game where players become elite speedrunners sprinting at maximum speed to secure victory. The game was developed by Luke Doukakis and released in November 2024. It has quickly gained popularity and become a must-play for fans of sports running games.\n\nThe game features several exciting modes, including:\n\n- Sprints: Choose from different distances ranging from a 100m dash to an 800m run.\n- Hurdles: Tackle the 100m and 400m hurdles for added challenges.\n- 4x100m Relay: Team up and test your baton-passing skills.\n- Free Run: Practice freely without any pressure of competition.\n\nRegardless of the modes, the objective is the same: completing the races in the shortest time by mastering the perfect rhythm."
+      },
+      {
+        "title": "Speed Stars Tutorials",
+        "subsections": [
+          {
+            "title": "How to Play Speed Stars Online?",
+            "content": "First, visit the website https://speedstars1.com via your PC/mobile browsers. Enter the player’s name and nation. Click or tap \"Race\" to start the game. Now, you’ll engage in a training race. Press the right and left arrow keys alternately to run; each press corresponds to a step. After finishing your first race, head to the main menu and select a Sprints track to start a new race."
+          },
+          {
+            "title": "How to Play the Speed Stars Hurdles Challenges",
+            "content": "Scroll the main menu, then select the \"100m hurdles\" or \"400m hurdles\" option. Press the right and left arrow keys alternately to run. When you approach a barrier, hold the down arrow key so that you get into the hurdle position."
+          },
+          {
+            "title": "How to Race in the Relay Mode?",
+            "content": "Scroll the main menu, then select \"4x100m relay.\" Use the arrow keys to run. When you approach your next relay teammate, press the down arrow key to extend your arm and pass the baton. For maximum speed, time your handoff just before contact."
+          },
+          {
+            "title": "How to Customize Your Athlete?",
+            "content": "Click or tap \"Default,\" and choose the athlete you’d like to customize (except the default athlete). Select the \"Customize\" button. Customize the character’s appearance however you like. Keep in mind that some options require in-game gems to unlock."
+          }
+        ]
+      },
+      {
+        "title": "How to Win Speed Stars: 5 Key Tips to Remember",
+        "content": "Speed Stars game is purely based on rhythm-based controls. Pressing or tapping fast doesn’t secure your victory; instead, maintaining a precise and steady rhythm is the key. Here are more expert tips and tricks to help you win every race:\n\n- Have a perfectly timed start. Start as soon as you hear the starting pistol to gain an edge right at the beginning. Avoid starting to run before the start signal (false starts).\n- Do not rush to press too fast. Rushing your pressing too quickly, or too slowly won’t work for sure. Focus on keeping smooth and efficient movements through short and controlled presses/taps instead of spamming the keys.\n- Avoid holding the arrow keys too long. This is because it can make the runner lean forward and slow down. Find the ideal rhythm to run fast and upright. Watch your speed in the top right corner of the screen and adjust your rhythm as needed.\n- Conserve stamina in longer races. For the 400m and 800m runs, conserving stamina is key for a strong sprint at the end. Avoid going full sprint right from the start, as it will quickly drain your stamina, leaving you unable to hit your top speed near the end.\n- Replay and review. Keep practicing and adjusting until you perfect your skills. After each run, watch your replay and identify any poor rhythm and mistimed moves. Learn from your mistakes and improve your next performance."
+      },
+      {
+        "title": "Why You Should Play Speed Stars at Speedstars2.io?",
+        "content": "- Instant & free access, with fast loading times and no downloads or installs required. Just click and start racing in Speed Stars Unblocked for free.\n- Smooth, realistic track-running gameplay optimized for a lag-free gaming experience.\n- Multiple game modes and sprint distances. Challenge yourself to reach the finish line as fast as possible across different tracks and become an invincible speedrunner.\n- Intuitive, easy-to-use controls. It is easy for players of all skill levels to sprint, hurdle, or pass the baton.\n- Mobile-friendly. Enjoy Speed Stars and race anytime, anywhere on either your PC desktop or mobile devices."
+      },
+      {
+        "title": "How Is Speed Stars Different From Other Runner Games?",
+        "content": "In the world of runner games, Speed Stars stands out for its various game modes, vast customization options, and especially the unique rhythm-based gameplay.\n\nSpeed Stars is not about running endlessly. Temple Run, Subway Surfers, and other endless runners often focus on running forward automatically, dodging obstacles, and collecting coins in endless environments. Speed Stars, on the other hand, offers a different experience centered around precision sprinting and perfect rhythm. You can’t steer the runner left or right, just running forward at full speed.\n\nIt is a competitive track race. In the game, the goal is to complete the race in the fastest time and climb the leaderboard as a top runner (instead of running as far as possible like in Crossy Road, Jetpack Joyride, etc.). In other words, it’s a sports running game that challenges your timing and precision rather than your quick reflexes."
+      },
+      {
+        "title": "Conclusion",
+        "content": "Speed Stars isn't just another runner game; it’s a whole new way to race! Get ready to get a head start and claim victory at every racetrack you are on. Play the game free online on Speedstars1.com today!"
+      }
+    ]
+  },
+  "footer": {
+    "name": "footer",
+    "brand": {
+      "title": "speedstars 1",
+      "description": "Your instant gateway to curated HTML5 games. Enjoy quick-loading casual games for stress relief and instant joy, no waiting required.",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "speedstars"
+      },
+      "url": "/"
+    },
+    "copyright": "© 2025 • speedstars1  All rights reserved.",
+    "nav": {
+      "items": [
+        {
+          "title": "About",
+          "children": [
+            {
+              "title": "Features",
+              "url": "/#feature",
+              "target": "_self"
+            },
+            {
+              "title": "Showcases",
+              "url": "/#showcase",
+              "target": "_self"
+            },
+            {
+              "title": "Pricing",
+              "url": "/#pricing",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "Resources",
+          "children": [
+            {
+              "title": "Documents",
+              "url": "https://docs.eratogame.ai",
+              "target": "_blank"
+            },
+            {
+              "title": "Components",
+              "url": "https://eratogame.ai/components",
+              "target": "_blank"
+            },
+            {
+              "title": "Templates",
+              "url": "https://eratogame.ai/templates",
+              "target": "_blank"
+            }
+          ]
+        },
+        {
+          "title": "Friends",
+          "children": [
+            {
+              "title": "ThinkAny",
+              "url": "https://thinkany.ai",
+              "target": "_blank"
+            },
+            {
+              "title": "HeyBeauty",
+              "url": "https://heybeauty.ai",
+              "target": "_blank"
+            },
+            {
+              "title": "Pagen",
+              "url": "https://pagen.so",
+              "target": "_blank"
+            }
+          ]
+        }
+      ]
+    },
+    "social": {
+      "items": [
+        {
+          "title": "X",
+          "icon": "RiTwitterXFill",
+          "url": "https://x.com/eratogameai",
+          "target": "_blank"
+        },
+        {
+          "title": "Github",
+          "icon": "RiGithubFill",
+          "url": "https://github.com/eratogameai",
+          "target": "_blank"
+        },
+        {
+          "title": "Discord",
+          "icon": "RiDiscordFill",
+          "url": "https://discord.gg/HQNnrzjZQS",
+          "target": "_blank"
+        },
+        {
+          "title": "Email",
+          "icon": "RiMailLine",
+          "url": "mailto:support@er ato la b.ai",
+          "target": "_self"
+        }
+      ]
+    },
+    "agreement": {
+      "items": [
+        {
+          "title": "Privacy Policy",
+          "url": "/privacy-policy"
+        },
+        {
+          "title": "Terms of Service",
+          "url": "/terms-of-service"
+        }
+      ]
+    }
+  }
+}

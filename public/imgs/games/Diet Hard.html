@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Diet Hard</title>
+
+    <meta name="viewport" content="width=device-width" />
+
+        <meta name="csrf-token" content="eMkTxCv8uh6NAQfXBysKv6rTLTaPExWGX1EaaxAe">
+        <meta name="author" content="Phaser Studio, Inc." />
+    <meta name="description" content="Simple game where you collect food, but stay balanced in what you eat!">
+    <meta name="keywords" content="phaser, html5, games, framework, library, canvas, webgl, animation, sprites, physics, audio, collision" />
+    <meta itemprop="name" content="Phaser - Diet Hard">
+    <meta itemprop="description" content="Simple game where you collect food, but stay balanced in what you eat!">
+    <meta itemprop="image" content="https://cdn.phaser.io/news/2025/05/diet-hard.png">
+    <meta property="og:url" content="https://phaser.io/news/2025/05/diet-hard">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Phaser - Diet Hard">
+    <meta property="og:description" content="Simple game where you collect food, but stay balanced in what you eat!">
+    <meta property="og:image" content="https://cdn.phaser.io/news/2025/05/diet-hard.png">
+    <meta property="twitter:domain" content="phaser.io">
+    <meta property="twitter:url" content="https://phaser.io/news/2025/05/diet-hard">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Phaser - Diet Hard">
+    <meta name="twitter:description" content="Simple game where you collect food, but stay balanced in what you eat!">
+    <meta name="twitter:image" content="https://cdn.phaser.io/news/2025/05/diet-hard.png">
+
+    <link rel="alternate" type="application/atom+xml" href="https://phaser.io/news.rss" title="Phaser News">
+        <link rel="stylesheet" href="https://phaser.io/build/assets/ArticleHeaderImage-ibZsfbaM.css" />
+    <style>
+        @media screen and (max-width: 640px) {
+            .news-filter-nav {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .news-filter-nav-link {
+                font-size: .85rem;
+                font-weight: 400;
+                display: inline-block;
+                border: 1px solid var(--color-accent);
+                padding: .5em;
+                text-decoration: none;
+                margin-bottom: .25em;
+                color: var(--color-accent);
+            }
+
+            .news-filter-nav-link:hover {
+                background-color: var(--color-accent-dark);
+                color: var(--color-accent);
+            }
+
+            .news-filter-nav-link.active {
+                background-color: var(--color-black);
+                color: var(--color-white);
+                border-color: var(--color-white);
+                font-weight: 700;
+            }
+
+            .news-filter-nav-link.active:hover {
+                color: var(--color-accent);
+            }
+
+            .news-filter-title {
+                font-size: 1rem;
+                font-weight: 400;
+                margin-top: 0;
+                margin-bottom: 0.5em;
+                padding-bottom: 0.5em;
+                color: var(--color-white);
+                border-bottom: 1px solid var(--color-accent-dark);
+            }
+        }
+
+        @media screen and (min-width: 640.1px) {
+            .news-filter-nav {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .news-filter-nav-link {
+                font-size: .7rem;
+                font-weight: 400;
+                display: inline-block;
+                border: 1px solid var(--color-accent);
+                padding: .5em;
+                text-decoration: none;
+                margin-bottom: .25em;
+                color: var(--color-accent);
+            }
+
+            .news-filter-nav-link:hover {
+                background-color: var(--color-accent-dark);
+                color: var(--color-accent);
+            }
+
+            .news-filter-nav-link.active {
+                background-color: var(--color-black);
+                color: var(--color-white);
+                border-color: var(--color-white);
+                font-weight: 700;
+            }
+
+            .news-filter-nav-link.active:hover {
+                color: var(--color-accent);
+            }
+
+
+            .news-filter-title {
+                font-size: 1rem;
+                font-weight: 400;
+                margin-top: 0;
+                margin-bottom: 0.5em;
+                padding-bottom: 0.25em;
+                color: var(--color-white);
+                /* border-bottom: 1px solid var(--color-accent-dark); */
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://phaser.io/build/assets/NewsletterForm-KHyVxlTx.css" />
+    <link rel="stylesheet" href="https://phaser.io/build/assets/Button-5BTads91.css" />
+    <link rel="stylesheet" href="https://phaser.io/build/assets/Navbar-qd2nwmRZ.css" />
+    <style>
+        .toast {
+            padding: .5em 1em;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 600px;
+            margin: 4em auto 1em;
+            position: absolute;
+            z-index: 100;
+            right: 0;
+
+            background: linear-gradient(-135deg, var(--color-accent-dark) 0%, var(--color-black) 100%);
+            color: var(--color-accent-lighter);
+            box-shadow: 0 0 36px 6px rgba(161, 193, 255, 0.25);
+        }
+
+        .toast button {
+            font-size: var(--font-size-l);
+            color: white;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding-bottom: .25em;
+        }
+
+        .toast.toast-hidden {
+            display: none;
+        }
+
+        .toast.toast-closed {
+            animation: allert-slide-up .3s ease-out;
+        }
+
+        @keyframes allert-slide-up {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://phaser.io/build/assets/Footer-LvmoL7fe.css">
+    <link rel="stylesheet" href="https://phaser.io/build/assets/ArticleHeader-LVhcvBrB.css" />
+    <style>
+        .article-subnav {
+            flex: 0 0 25%;
+            position: sticky;
+            top: calc(var(--nav-height) + 1em);
+            align-self: flex-start;
+        }
+
+        @media screen and (min-width: 640.1px) {
+            .article-subnav {
+                flex: 0 0 25%;
+                position: sticky;
+                top: calc(var(--nav-height) + 1em);
+                align-self: flex-start;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://phaser.io/build/assets/ArticleBody-teE8QVnc.css" />
+    <link rel="stylesheet" href="https://phaser.io/build/assets/Main-JakpcKfU.css">
+        <link rel="stylesheet" href="https://phaser.io/build/assets/prism-ZpRt-G3Q.css" />
+        <style>
+        @media screen and (max-width: 640px) {
+            .article {
+                margin: auto;
+                position: relative;
+                background-color: var(--color-black);
+                color: var(--color-white);
+                width: 100vw;
+                overflow-x: hidden;
+            }
+
+            .row {
+                display: flex;
+                flex-direction: column-reverse;
+                padding: var(--spacing-outer);
+                gap: var(--spacing-outer);
+            }
+        }
+
+        @media screen and (min-width: 640.1px) {
+            .article {
+                margin: auto;
+                position: relative;
+                background-color: var(--color-black);
+                color: var(--color-white);
+            }
+
+            .row {
+                display: flex;
+                padding: var(--spacing-outer);
+                gap: var(--spacing-outer);
+            }
+        }
+    </style>
+    <style>
+        @media screen and (max-width: 640px) {
+            .phaser_logo {
+                width: calc(7.6 * var(--font-size-base));
+                height: calc(1.6 * var(--font-size-base));
+            }
+
+            .phaser_logo--light path {
+                stroke: var(--color-black, #000);
+            }
+
+            .phaser_logo--light rect {
+                fill: var(--color-black, #000);
+            }
+        }
+
+        @media screen and (min-width: 640.1px) {
+            .phaser_logo {
+                width: 10.13vw;
+                height: 2.1vw;
+            }
+
+            .phaser_logo--light path {
+                stroke: var(--color-black, #000);
+            }
+
+            .phaser_logo--light rect {
+                fill: var(--color-black, #000);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://phaser.io/build/assets/Icons-_q8ETSMd.css">
+        <script src="https://cdn.usefathom.com/script.js" data-site="FPICFQHA" defer></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NC8GZ639E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-7NC8GZ639E');
+    </script>
+</head>
+
+<body>
+                    <nav class="main_nav main_nav_atTop main_nav_dark main_nav_withAlert"
+    data-nav="main_nav">
+    <a class="main_nav_home" href="//phaser.io/">
+        <svg class="phaser_logo phaser_logo--dark" width="146" height="30" viewBox="0 0 146 30"
+    fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_201_48)">
+        <path
+            d="M9.54294 0.671143H1.15247V9.30201V24.2953H9.54294V12.3893L12.9422 17.9329H25.5932V9.30201V0.671143H9.54294Z"
+            stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path d="M8.88458 9.302L18.0182 9.302" stroke="var(--color-white, #FFF)" stroke-width="2"
+            stroke-miterlimit="10" />
+        <path
+            d="M56.7084 24.2953L61.1516 9.81879L65.5947 24.2953H97.121V15.7047L87.2756 9.26175H97.121V0.671143H74.1548V9.26175L83.9938 15.7047H74.1548V18.7517L67.8979 0.671143H62.7957H59.5074H54.4053L48.7616 18.7517V0.671143H40.3711V9.30201H33.9445V0.671143H25.554V24.2953H33.9445V17.9329H40.3711V24.2953H56.7084Z"
+            stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path
+            d="M97.121 0.671143V8.18792V9.26175V15.7047V16.7785V24.2953H120.081V16.7785V15.7047V9.26175V8.18792V0.671143H97.121Z"
+            stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path d="M105.538 9.26172H120.081" stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path d="M105.538 16.1812H120.081" stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path
+            d="M144.476 29.3289L139.302 17.9329H143.047V9.30202V0.671143H134.076H128.471H125.059H120.081V9.30202V24.2953H128.471V12.9369L135.902 29.3289H144.476Z"
+            stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path d="M127.817 9.302L135.668 9.302" stroke="var(--color-white, #FFF)" stroke-width="2"
+            stroke-miterlimit="10" />
+    </g>
+    <defs>
+        <clipPath id="clip0_201_48">
+            <rect width="145" height="30" fill="var(--color-white, #FFF)" transform="translate(0.5)" />
+        </clipPath>
+    </defs>
+</svg>
+
+    </a>
+    <ul class="navlist navlist_primary">
+        <li>
+            <a href="#" onclick="return false;">Products</a>
+            <ul class="subnavlist">
+                <li><a href="//phaser.io/download/phaser-launcher">Phaser</a></li>
+                <li><a href="//phaser.io/editor">Phaser Editor</a></li>
+                <li><a href="//phaser.io/box2d">Phaser Box2D</a></li>
+                <li><a href="//phaser.io/discord">Discord Activities</a></li>
+            </ul>
+        </li>
+        <li><a href="//phaser.io/news">News</a></li>
+        <li><a href="//phaser.io/pricing">Pricing</a></li>
+        <li><a href="//phaser.io/news/category/game">Games</a></li>
+    </ul>
+    <ul class="navlist navlist_secondary">
+        <li>
+            <a href="#" onclick="return false;">Resources</a>
+            <ul class="subnavlist">
+                <li><a href="//phaser.io/why-phaser">What is Phaser?</a></li>
+                                    <li><a
+                            href="//phaser.io/examples/v3.85.0">Examples</a>
+                    </li>
+                                <li><a href="//phaser.io/tutorials/getting-started-with-phaser-launcher">Getting Started</a>
+                </li>
+                <li><a href="//phaser.io/tutorials/making-your-first-phaser-3-game/part1">Making your first
+                        Game</a></li>
+                <li><a href="https://docs.phaser.io">Documentation</a></li>
+                <li><a href="//phaser.io/learn">Tutorials</a></li>
+                <li><a href="https://www.youtube.com/@PhaserYouTube" target="_blank" rel="noopener noreferrer">Phaser
+                        YouTube</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="main_nav_user main_nav_user_loggedout">
+                    <a href="/login">Log in</a>
+            <a class="button  button--secondary" href="/register" >
+        Sign up
+    </a>
+
+
+            </div>
+    <button class="mobile_nav_toggle" data-nav="mobile_nav_toggle">
+        <svg class="mobile-nav-toggle-graphic" width="48" height="47" viewBox="0 0 48 47" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <line x1="9.5" y1="15.5" x2="38.5" y2="15.5" stroke="var(--color-white, #FFF)"
+                stroke-width="3" stroke-linecap="round"></line>
+            <line x1="15.5" y1="23.5" x2="38.5" y2="23.5" stroke="var(--color-white, #FFF)"
+                stroke-width="3" stroke-linecap="round"></line>
+            <line x1="9.5" y1="31.5" x2="38.5" y2="31.5" stroke="var(--color-white, #FFF)"
+                stroke-width="3" stroke-linecap="round"></line>
+        </svg>
+    </button>
+</nav>
+
+    <div class="main_nav_alert">
+                    <a href="https://beam.game" class="main_nav_alert_link" target="_blank" rel="noopener noreferrer">
+                <div class="main_nav_alert_text">
+                    Build games as easily as you play them — join the Phaser Beam waitlist for Early Access.
+                </div>
+
+            </a>
+            </div>
+
+
+        <main class="content-wrapper">
+                            <div class="article">
+        <header
+    class="article-header   ">
+    <div class="article-header-text">
+                    <div class="category">
+                                    <a class="backlink" href=/news>News</a>
+                            </div>
+                <h1 class="article-header-title">Diet Hard</h1>
+                    <div class="article-header-subhead">Simple game where you collect food, but stay balanced in what you eat!</div>
+                            <div class="article-header-meta-date">Published on 27 May 2025</div>
+            </div>
+            <figure class="article-header-image" data-scroll-delta-out>
+    <img src="https://cdn.phaser.io/news/2025/05/diet-hard.png" alt="" loading="eager">
+
+            <div class="header-image-shine"></div>
+    </figure>
+
+        </header>
+
+        <div class="row">
+            <div class="article-subnav">
+            <div class="news-filter">
+    <h3 class="news-filter-title">
+        Filter News By:
+    </h3>
+    <nav class="news-filter-nav flex-column">
+        <a class="news-filter-nav-link " href="/news">Latest</a>
+        <a class="news-filter-nav-link "
+            href="/news/category/news">News</a>
+        <a class="news-filter-nav-link "
+            href="/news/category/game">Games</a>
+        <a class="news-filter-nav-link "
+            href="/news/category/tutorial">Tutorials</a>
+        <a class="news-filter-nav-link "
+            href="/news/category/video">Videos</a>
+    </nav>
+</div>
+
+        <div class="newsletter-form">
+    <!-- <img src="/img/phaser_world_logo.png" alt="Phaser World Newsletter" class="newsletter-logo" /> -->
+    <svg class="newsletter-logo" width="3771" height="625" viewBox="0 0 3771 625" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_296_869)">
+            <path
+                d="M2427.1 158.99L2401.53 339.7L2367.11 158.99H2366.26H2260.72H2259.87L2225.45 339.7L2199.88 158.99H2076.96L2135.75 470.25H2196.94H2236.29H2288.64L2313.49 366.54L2338.34 470.25H2390.69H2430.04H2491.23L2550.02 158.99H2427.1Z"
+                fill="#93278F" stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path d="M3466.15 158.99V470.25H3667.43L3760.4 413.02V211.87L3667.43 158.99H3466.15Z" fill="#93278F"
+                stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path d="M123.72 158.99H10V272.71V470.25H123.72V313.42L169.82 386.43H341.25V272.71V158.99H123.72Z"
+                fill="#93278F" stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path d="M123.72 272.71H238.58" stroke="white" stroke-width="20" stroke-miterlimit="10"
+                stroke-linecap="square"></path>
+            <path
+                d="M762.98 470.25L823.22 279.54L883.46 470.25H1310.72V357.06L1177.33 272.18H1310.72V158.99H999.47V272.18L1132.85 357.06H999.47V397.25L914.69 158.99H845.47H800.97H731.76L655.26 397.25V158.99H541.54V272.71H454.44V158.99H340.72V470.25H454.44V386.43H541.54V470.25H762.98Z"
+                fill="#93278F" stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path
+                d="M1310.72 158.99V258.03V272.18V357.06V371.21V470.25H1621.97V371.21V357.06V272.18V258.03V158.99H1310.72Z"
+                fill="#93278F" stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path d="M1424.84 272.18H1621.97" stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path d="M1424.84 363.38H1621.97" stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path
+                d="M1952.59 536.6L1882.52 386.43H1933.23V272.71V158.99H1811.62H1735.69H1689.46H1621.97V272.71V470.25H1735.69V314.62L1836.43 536.6H1952.59Z"
+                fill="#93278F" stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path d="M1735.69 272.71H1833.24" stroke="white" stroke-width="20" stroke-miterlimit="10"
+                stroke-linecap="square"></path>
+            <path
+                d="M3191.68 470.25L3140.97 386.43H3191.68V272.71V158.99H3070.07H2994.14H2947.91H2880.42V272.71V470.25H2994.14V314.62L3075.52 470.25H3191.68Z"
+                fill="#93278F" stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path d="M2994.14 272.71H3091.69" stroke="white" stroke-width="20" stroke-miterlimit="10"
+                stroke-linecap="square"></path>
+            <path d="M3335.4 358.64V158.99H3191.68V356.53V470.25H3305.4H3466.15V358.64H3335.4Z" fill="#93278F"
+                stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path d="M3616.3 265.85V363.39" stroke="white" stroke-width="20" stroke-miterlimit="10"
+                stroke-linecap="square"></path>
+            <path
+                d="M2699.21 485.71C2794.89 485.71 2872.45 408.148 2872.45 312.47C2872.45 216.792 2794.89 139.23 2699.21 139.23C2603.53 139.23 2525.97 216.792 2525.97 312.47C2525.97 408.148 2603.53 485.71 2699.21 485.71Z"
+                fill="#93278F" stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+            <path
+                d="M2747.65 146.09C2801.82 58.6002 2845.72 3.59018 2858.96 10.6002C2878.65 21.0202 2823.09 164.62 2734.87 331.33C2646.65 498.05 2559.17 624.75 2539.48 614.33C2526.24 607.32 2547.04 540.07 2588.92 446.05"
+                stroke="white" stroke-width="20" stroke-miterlimit="10"></path>
+        </g>
+        <defs>
+            <clipPath id="clip0_296_869">
+                <rect width="3770.4" height="624.94" fill="white"></rect>
+            </clipPath>
+        </defs>
+    </svg>
+    <h3 class="newsletter-form-title">Subscribe to our Newsletter</h3>
+
+        
+    <form id="ema_signup_form" action="https://phaser.io/newsletter/subscribe" accept-charset="UTF-8" method="post">
+        <input type="hidden" name="_token" value="eMkTxCv8uh6NAQfXBysKv6rTLTaPExWGX1EaaxAe" autocomplete="off">        <div class="mimi_field text required">
+            <label for="signup_email">Email</label>
+            <input id="signup_email" name="newsletter_email" value="" type="email"
+                placeholder="you@example.com" required autocomplete="off" />
+        </div>
+        <div class="action">
+            <input type="submit" class="submit" value="Subscribe" />
+        </div>
+    </form>
+</div>
+
+</div>
+
+            <div class="article-body">
+    <p><img src="https://cdn.phaser.io/news/2025/05/gamedevjs-jam-2025.png" alt="" />
+<img src="https://cdn.phaser.io/news/2025/05/diet-hard-1.png" alt="" />
+Diet Hard by ncl88 was entered into the <a href="https://itch.io/jam/gamedevjs-2025">GameDev.js Jam 2025</a> in the <strong>Build it with Phaser</strong> category, where the Phaser team ranked it in 10th place and 180th place overall.</p>
+<p>Here is what the Phaser Studio team thought of it:
+<img src="https://cdn.phaser.io/news/2025/05/diet-hard-2.png" alt="" />
+Really well polished, diet-balancing game! You have to coordinate with your movement &amp; eating skill while keeping your eye on the diet scale, otherwise if you get all the junk food, becomes harder to jump!
+<img src="https://cdn.phaser.io/news/2025/05/diet-hard-3.png" alt="" /></p>
+<p><a href="https://ncl88.itch.io/diet-hard">Play Diet Hard</a></p>
+</div>
+
+<template id="articleBodyLastLink">
+    <a class="button last-link button--primary" href="#" >
+        
+    </a>
+
+</template>
+<template id="youtubeIframeWrapper">
+    <div class="embed-youtube" />
+</template>
+
+
+        </div>
+        
+    </div>
+        </main>
+        <footer id="footer">
+    <div class="row">
+        <div class="hygiene">
+            <svg class="phaser_logo " width="146" height="30" viewBox="0 0 146 30"
+    fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_201_48)">
+        <path
+            d="M9.54294 0.671143H1.15247V9.30201V24.2953H9.54294V12.3893L12.9422 17.9329H25.5932V9.30201V0.671143H9.54294Z"
+            stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path d="M8.88458 9.302L18.0182 9.302" stroke="var(--color-white, #FFF)" stroke-width="2"
+            stroke-miterlimit="10" />
+        <path
+            d="M56.7084 24.2953L61.1516 9.81879L65.5947 24.2953H97.121V15.7047L87.2756 9.26175H97.121V0.671143H74.1548V9.26175L83.9938 15.7047H74.1548V18.7517L67.8979 0.671143H62.7957H59.5074H54.4053L48.7616 18.7517V0.671143H40.3711V9.30201H33.9445V0.671143H25.554V24.2953H33.9445V17.9329H40.3711V24.2953H56.7084Z"
+            stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path
+            d="M97.121 0.671143V8.18792V9.26175V15.7047V16.7785V24.2953H120.081V16.7785V15.7047V9.26175V8.18792V0.671143H97.121Z"
+            stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path d="M105.538 9.26172H120.081" stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path d="M105.538 16.1812H120.081" stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path
+            d="M144.476 29.3289L139.302 17.9329H143.047V9.30202V0.671143H134.076H128.471H125.059H120.081V9.30202V24.2953H128.471V12.9369L135.902 29.3289H144.476Z"
+            stroke="var(--color-white, #FFF)" stroke-width="2" stroke-miterlimit="10" />
+        <path d="M127.817 9.302L135.668 9.302" stroke="var(--color-white, #FFF)" stroke-width="2"
+            stroke-miterlimit="10" />
+    </g>
+    <defs>
+        <clipPath id="clip0_201_48">
+            <rect width="145" height="30" fill="var(--color-white, #FFF)" transform="translate(0.5)" />
+        </clipPath>
+    </defs>
+</svg>
+
+            <p>
+                <strong>&copy; 2025 Phaser Studio Inc.</strong><br>
+                All rights reserved.
+            </p>
+            <p><a href="https://phaser.io/community/privacy-policy" class="track-mixpanel" data-event="Footer Link">Privacy
+                    &amp; Cookie Policy</a></p>
+        </div>
+        <div class="resources">
+            <p><a href="/download/phaser-launcher" class="track-mixpanel"
+                    data-event="Footer Link">v3.90.0</a></p>
+            <p><a href="/editor" class="track-mixpanel" data-event="Footer Link">Phaser Editor</a></p>
+            <p><a href="https://docs.phaser.io" class="track-mixpanel" data-event="Footer Link">Documentation</a></p>
+        </div>
+        <div class="socials">
+            <div class="social-item">
+                <a href="https://phaser.discourse.group/" target="_blank" class="track-mixpanel"
+                    data-event="Forum Footer Link">
+                    <div class="icon-container">
+                        <span class="icon icon--forums icon--display-block icon--size-fill-height" >
+            <svg width="47" height="48" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <mask id="mask0_298_569" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="47" height="48">
+  <rect x="0.141602" y="0.72168" width="46.7168" height="46.7168" fill="red"/>
+  </mask>
+  <g mask="url(#mask0_298_569)">
+  <path d="M15.1697 36.8816C14.6976 36.8816 14.3019 36.722 13.9826 36.4026C13.6633 36.0833 13.5036 35.6876 13.5036 35.2156V31.8834H35.1625V16.8889H38.4946C38.9666 16.8889 39.3623 17.0485 39.6817 17.3679C40.001 17.6872 40.1606 18.0829 40.1606 18.5549V43.5459L33.4964 36.8816H15.1697ZM6.83936 35.2156V11.8907C6.83936 11.4186 6.99902 11.0229 7.31835 10.7036C7.63768 10.3843 8.03337 10.2246 8.50542 10.2246H30.1643C30.6363 10.2246 31.032 10.3843 31.3513 10.7036C31.6707 11.0229 31.8303 11.4186 31.8303 11.8907V26.8853C31.8303 27.3573 31.6707 27.753 31.3513 28.0723C31.032 28.3917 30.6363 28.5513 30.1643 28.5513H13.5036L6.83936 35.2156ZM28.4982 25.2192V13.5567H10.1715V25.2192H28.4982Z" fill="currentColor"/>
+  </g>
+</svg>
+      
+</span>
+
+                    </div>
+                    <span class="social-name">Forums</span>
+                </a>
+            </div>
+            <div class="social-item">
+                <a href="https://x.com/phaser_" target="_blank" class="track-mixpanel" data-event="Twitter Footer Link">
+                    <div class="icon-container">
+                        <span class="icon icon--twitter icon--display-block icon--size-fill-height" >
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M33.9982 8.49121H39.2878L27.7317 21.699L41.3265 39.6719H30.6819L22.3447 28.7715L12.805 39.6719H7.51223L19.8726 25.5447L6.83105 8.49121H17.7459L25.282 18.4546L33.9982 8.49121ZM32.1418 36.5059H35.0728L16.1533 11.491H13.008L32.1418 36.5059Z" fill="currentColor"/>
+</svg>
+      
+</span>
+
+                    </div>
+                    <span class="social-name">Twitter</span>
+                </a>
+            </div>
+            <div class="social-item">
+                <a href="https://www.reddit.com/r/phaser/" target="_blank" class="track-mixpanel"
+                    data-event="Reddit Footer Link">
+                    <div class="icon-container">
+                        <span class="icon icon--reddit icon--display-block icon--size-fill-height" >
+            <svg width="42" height="48" viewBox="0 0 42 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M41.6736 24.1381C41.6736 21.512 39.537 19.3753 36.9109 19.3753C35.7427 19.3753 34.6411 19.798 33.7714 20.5631C30.6218 18.5476 26.4191 17.2776 21.7834 17.1409L24.6199 7.43908L31.5843 8.73301C31.584 8.78959 31.573 8.84358 31.5759 8.90075C31.6605 10.5582 33.0774 11.8377 34.735 11.7531C36.3924 11.6686 37.6719 10.2515 37.5874 8.59414C37.5028 6.93667 36.0858 5.65723 34.4284 5.74177C33.3582 5.79635 32.4525 6.41016 31.9628 7.28179L31.9603 7.28079L23.5679 5.72168L20.2252 17.1382C15.5783 17.2621 11.3623 18.5246 8.19915 20.5365C7.33405 19.7878 6.24394 19.3753 5.08897 19.3753C2.46294 19.3753 0.326172 21.5119 0.326172 24.1381C0.326172 25.7624 1.1624 27.2603 2.51651 28.1342C2.43423 28.6094 2.38727 29.092 2.38727 29.5819C2.38727 36.4565 10.7205 42.0498 20.9645 42.0498C31.2085 42.0498 39.5417 36.4564 39.5417 29.5819C39.5417 29.1062 39.498 28.6375 39.4202 28.1754C40.8116 27.3082 41.6736 25.788 41.6736 24.1381ZM12.1356 27.3797C12.1356 25.7644 13.4456 24.4537 15.0632 24.4537C16.6793 24.4537 17.9893 25.7644 17.9893 27.3797C17.9893 28.9966 16.6793 30.3066 15.0632 30.3066C13.4456 30.3066 12.1356 28.9966 12.1356 27.3797ZM27.8639 35.296C27.7767 35.3872 25.6765 37.5238 20.9303 37.5238C16.1597 37.5238 14.2513 35.3576 14.1727 35.2657C13.9037 34.9516 13.9404 34.4786 14.2545 34.2106C14.5669 33.944 15.0353 33.9784 15.305 34.2877C15.3477 34.3344 16.9406 36.0277 20.9303 36.0277C24.9894 36.0277 26.7692 34.2744 26.7871 34.2573C27.0746 33.9644 27.5477 33.9573 27.843 34.2449C28.1366 34.5316 28.1476 34.9992 27.8639 35.296ZM27.2818 30.3066C25.6641 30.3066 24.3542 28.9966 24.3542 27.3797C24.3542 25.7644 25.6642 24.4537 27.2818 24.4537C28.898 24.4537 30.2079 25.7644 30.2079 27.3797C30.2079 28.9966 28.898 30.3066 27.2818 30.3066Z" fill="currentColor"/>
+</svg>
+    
+</span>
+
+                    </div>
+                    <span class="social-name">Reddit</span>
+                </a>
+            </div>
+            <div class="social-item">
+                <a href="https://discord.com/invite/phaser" target="_blank" class="track-mixpanel"
+                    data-event="Discord Footer Link">
+                    <div class="icon-container">
+                        <span class="icon icon--discord icon--display-block icon--size-fill-height" >
+            <svg width="42" height="48" viewBox="0 0 42 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M35.1838 10.615C32.4981 9.33193 29.6632 8.42144 26.7514 7.90667C26.3561 8.64639 25.9941 9.4203 25.6745 10.2C24.1257 9.95596 22.5616 9.83312 20.9952 9.83255C19.4313 9.83255 17.8598 9.95669 16.3152 10.1969C15.9998 9.41905 15.6334 8.64781 15.2357 7.90625C12.3277 8.42413 9.4856 9.33985 6.80141 10.6203C1.46456 18.8671 0.0182672 26.9077 0.741373 34.8342C3.86643 37.2452 7.36401 39.0789 11.0822 40.2556C11.916 39.0799 12.663 37.8283 13.2972 36.5257C12.0872 36.0548 10.9196 35.4728 9.80805 34.7865C10.1006 34.5649 10.3866 34.3366 10.663 34.115C13.8951 35.7005 17.4268 36.5276 20.9999 36.5276C24.5731 36.5276 28.1048 35.7005 31.337 34.1147C31.6167 34.3532 31.9028 34.5814 32.192 34.7863C31.0782 35.4738 29.9085 36.0574 28.6965 36.5301C29.3329 37.8355 30.0738 39.0823 30.9115 40.2571C34.633 39.0841 38.1334 37.2505 41.2592 34.8366L41.2584 34.8375C42.1069 25.6454 39.8088 17.6786 35.1838 10.615ZM14.2117 29.9595C12.1965 29.9595 10.5316 28.0492 10.5316 25.6991C10.5316 23.349 12.1386 21.4219 14.2053 21.4219C16.272 21.4219 17.9239 23.349 17.8886 25.6991C17.8533 28.0492 16.2656 29.9595 14.2117 29.9595ZM27.7881 29.9595C25.7696 29.9595 24.1112 28.0492 24.1112 25.6991C24.1112 23.349 25.7182 21.4219 27.7881 21.4219C29.8579 21.4219 31.4971 23.349 31.4618 25.6991C31.4264 28.0492 29.8419 29.9595 27.7881 29.9595Z" fill="currentColor"/>
+</svg>      
+</span>
+
+                    </div>
+                    <span class="social-name">Discord</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+        <script>
+        (() => {
+            const articleBody = document.querySelector('.article-body');
+            const lastLink = articleBody.querySelector('p:last-of-type a:last-of-type');
+            const isLastChild = lastLink?.closest('p').childNodes.length === 1;
+
+            if (lastLink && isLastChild) {
+                const template = document.getElementById('articleBodyLastLink');
+                const clone = template.content.cloneNode(true);
+                const link = clone.querySelector('a');
+
+                if (link) {
+                    //create element
+                    link.setAttribute('href', lastLink.getAttribute('href'));
+                    link.textContent = lastLink.textContent;
+
+                    lastLink.replaceWith(clone);
+                }
+            }
+
+            const iframes = articleBody.querySelectorAll('iframe');
+            iframes.forEach((iframe) => {
+                if (iframe.src.includes('youtube')) {
+                    const template = document.getElementById('youtubeIframeWrapper');
+                    const clone = template.content.cloneNode(true);
+
+                    //create element
+                    clone.querySelector('.embed-youtube').appendChild(iframe.cloneNode(true));
+
+                    iframe.replaceWith(clone);
+                }
+            });
+        })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
+    <script type="module">
+        
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.onload = () => {
+
+            let windowCenter = {
+                x: window.innerWidth / 2,
+                y: window.innerHeight / 2
+            };
+            gsap.to(document.documentElement, {
+                '--scroll-y': window.scrollY.toString(),
+                duration: 0.3
+            })
+
+            window.addEventListener('resize', () => {
+                gsap.to(windowCenter, {
+                    x: window.innerWidth / 2,
+                    y: window.innerHeight / 2,
+                    duration: 0.5
+                });
+            }, {
+                passive: true
+            });
+
+            const observer = ScrollTrigger.observe({
+                type: 'pointer',
+                onMove: (e) => {
+                    if (!e.x || !e.y) return
+                    // const mouseX = e.x / window.innerWidth;
+                    // const mouseY = e.y / window.innerHeight;
+                    const mouseXDelta = (e.x - windowCenter.x) / windowCenter.x;
+                    const mouseYDelta = (e.y - windowCenter.y) / windowCenter.y;
+                    // let xTo = gsap.quickTo(document.documentElement, "--mousex", { duration: 0.3 });
+                    // let yTo = gsap.quickTo(document.documentElement, "--mousey", { duration: 0.3 });
+                    let xDeltaTo = gsap.quickTo(document.documentElement, "--mousex-delta", {
+                        duration: 0.3
+                    });
+                    let yDeltaTo = gsap.quickTo(document.documentElement, "--mousey-delta", {
+                        duration: 0.3
+                    });
+                    // xTo(mouseX);
+                    // yTo(mouseY);
+                    xDeltaTo(mouseXDelta);
+                    yDeltaTo(mouseYDelta);
+                }
+            });
+
+            const elsScrollIn = document.querySelectorAll('[data-scroll-delta-in]')
+            const elsScrollOut = document.querySelectorAll('[data-scroll-delta-out]')
+            const elsScrollOutTop = document.querySelectorAll('[data-scroll-delta-out-top]')
+            const elsScrollInOut = document.querySelectorAll('[data-scroll-delta-inout]')
+
+            if (elsScrollInOut) {
+                elsScrollInOut.forEach(el => {
+                    gsap.fromTo(el, {
+                        '--scroll-delta': -1
+                    }, {
+                        '--scroll-delta': 1,
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "0 75%",
+                            end: "100% 25%",
+                            scrub: 1
+                        }
+                    })
+                })
+            }
+
+            if (elsScrollIn) {
+                elsScrollIn.forEach(el => {
+                    gsap.fromTo(el, {
+                        '--scroll-delta': -1
+                    }, {
+                        '--scroll-delta': 0,
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "0 75%",
+                            end: "50% 55%",
+                            scrub: true
+                        }
+                    })
+                })
+            }
+
+            if (elsScrollOut) {
+                elsScrollOut.forEach(el => {
+                    gsap.fromTo(el, {
+                        '--scroll-delta': 0
+                    }, {
+                        '--scroll-delta': 1,
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "50% 45%",
+                            end: "100% 25%",
+                            scrub: true
+                        }
+                    })
+                })
+            }
+
+            if (elsScrollOutTop) {
+                elsScrollOutTop.forEach(el => {
+                    gsap.fromTo(el, {
+                        '--scroll-delta': 0
+                    }, {
+                        '--scroll-delta': 1,
+                        ease: 'linear',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "0% 0%",
+                            end: "100% 0%",
+                            scrub: true
+                        }
+                    })
+                    el.classList.add('scrollTrigger_inititated');
+                })
+            }
+        }
+    </script>
+
+            <script type="module">
+            import * as
+            Prism
+            from 'https://phaser.io/build/assets/prism-XAkIY8ry.js';
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // Select all code blocks that don't have a language class
+                const codeBlocks = document.querySelectorAll('code:not([class*="language-"])');
+
+                codeBlocks.forEach((block) => {
+                    // Add a default language class (e.g., JavaScript)
+                    block.classList.add('language-javascript');
+                });
+
+                // Re-highlight the code blocks
+                //
+            });
+        </script>
+        <script src="https://phaser.io/build/assets/Navbar-IFAAmFTb.js" type="module"></script>
+    <script>
+        const toastCloseButtons = document.querySelectorAll('.toast button.toast-close');
+
+        toastCloseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.closest('.toast').classList.add('toast-closed');
+
+                setTimeout(() => {
+                    button.closest('.toast').classList.add('toast-hidden');
+                }, 300);
+            });
+        });
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"94df998eeb605776","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.5.0","token":"672055286cb74db8b1a022d223fe5f13"}' crossorigin="anonymous"></script>
+</body>
+
+</html>

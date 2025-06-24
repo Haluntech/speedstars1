@@ -1,0 +1,15 @@
+Score with proper matches
+First search must have a future match
+
+Bug: No after match, não está a matchar mais de 4
+
+const fakeMap = [
+            ['w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'],
+            ['w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'],
+            ['w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'],
+            ['w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'],
+            ['w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'],
+            ['w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'],
+            ['w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'],
+            ['w', 'w', 'w', 'w', 'w', 'w', 'w', 'w'],
+        ];
