@@ -1,6 +1,3 @@
-
-
-
 export default function BalancePage() {
     return (
       <div className="bg-black min-h-screen p-8 space-y-8">
