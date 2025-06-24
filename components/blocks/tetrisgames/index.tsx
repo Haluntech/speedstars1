@@ -13,7 +13,7 @@ export default function GameComponent() {
 {/* 游戏展示区域 */}
       <div className="mb-4">
         <iframe
-          src="https://tetris1-e8v.pages.dev/"
+          src="https://tetris-2dm.pages.dev/"
           className="mx-auto max-w-4xl w-full aspect-video rounded-lg"
           allowFullScreen
           loading="lazy"
