@@ -187,6 +187,15 @@ export default function GameList({ gameType }: { gameType?: string }) {
         image: '/imgs/games/tetris2.png',
         path: '/gamelist/tetris2'
       },
+      {
+        id: 22,
+        title: 'Tetris 3',
+        desc: 'tetris',
+        releaseDate: '2024-06-20',
+        popularity: 95,
+        image: '/imgs/games/tetris3.png',
+        path: '/gamelist/tetris3'
+      },
       
 
   ];
