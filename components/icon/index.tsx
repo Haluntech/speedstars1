@@ -49,7 +49,6 @@ const iconPackages: { [key: string]: any } = {
   // Lu,
   // Md,
   // Pi,
-  Ri,
   // Rx,
   // Si,
   // Sl,
