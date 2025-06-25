@@ -24,7 +24,7 @@ const HorrorGameBlock = ({ gameType }: HorrorGameBlockProps) => {
       {/* 游戏展示区域 */}
       <div className="mb-4">
         <iframe
-          src={`https://${gameType}.fngames.io/`}
+          src={`https://run3.io/popgame/fnaf/fnaf1/`}
           className="mx-auto max-w-4xl w-full aspect-video rounded-lg"
           allowFullScreen
           loading="lazy"
