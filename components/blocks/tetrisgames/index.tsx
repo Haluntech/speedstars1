@@ -33,9 +33,7 @@ export default function GameComponent({ gameType }: GameProps) {
       {/* 游戏选择区域 */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { id: '1', icon: 'gamepad', name: 'Tetris Classic', description: 'The original version' },
-          { id: '2', icon: 'gamepad', name: 'Tetris Battle', description: 'Multiplayer mode' },
-          { id: '3', icon: 'gamepad', name: 'Tetris 99', description: 'Battle royale version' }
+          
         ].map((game) => (
           <Card key={game.id} className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
             <div className="flex items-center gap-3">

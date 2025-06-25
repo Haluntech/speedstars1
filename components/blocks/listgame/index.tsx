@@ -6,15 +6,7 @@ import Image from 'next/image';
 
 export default function GameList({ gameType }: { gameType?: string }) {
   const games = [
-    {
-      id: 1,
-      title: 'Castle crashers breast',
-      desc: 'beard',
-      releaseDate: '2024-05-20',
-      popularity: 95,
-      image: '/imgs/games/castlecrashing.png',
-      path: '/gamelist/castlecrashing/'
-    },
+   
     {
         id: 2,
         title: 'Splinta Brix',

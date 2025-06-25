@@ -164,7 +164,7 @@
     "name": "footer",
     "brand": {
       "title": "speedstars 1",
-      "description": "Your instant gateway to curated HTML5 games. Enjoy quick-loading casual games for stress relief and instant joy, no waiting required.",
+      "description": "speedstars 1 is a fast-paced, action-packed, and thrilling online speedrunning game that offers a unique and fun way to challenge your reflexes and timing skills. Get ready to get a head start and claim victory at every racetrack you are on. Play the game free online on Speedstars1.com today!",
       "logo": {
         "src": "/logo.png",
         "alt": "speedstars"
@@ -175,24 +175,7 @@
     "nav": {
       "items": [
         {
-          "title": "About",
-          "children": [
-            {
-              "title": "Features",
-              "url": "/#feature",
-              "target": "_self"
-            },
-            {
-              "title": "Showcases",
-              "url": "/#showcase",
-              "target": "_self"
-            },
-            {
-              "title": "Pricing",
-              "url": "/#pricing",
-              "target": "_self"
-            }
-          ]
+         
         },
         {
           "title": "Resources",
@@ -218,52 +201,25 @@
           "title": "Friends",
           "children": [
             {
-              "title": "ThinkAny",
-              "url": "https://thinkany.ai",
+              "title": "Subwaysurfers",
+              "url": "https://subwaysurfers.live",
               "target": "_blank"
             },
             {
-              "title": "HeyBeauty",
-              "url": "https://heybeauty.ai",
+              "title": "Disney Solitaire",
+              "url": "https://disneysolitaire.net/",
               "target": "_blank"
             },
             {
-              "title": "Pagen",
-              "url": "https://pagen.so",
+              "title": "Colorwood Game",
+              "url": "https://colorwood.xyz",
               "target": "_blank"
             }
           ]
         }
       ]
     },
-    "social": {
-      "items": [
-        {
-          "title": "X",
-          "icon": "RiTwitterXFill",
-          "url": "https://x.com/eratogameai",
-          "target": "_blank"
-        },
-        {
-          "title": "Github",
-          "icon": "RiGithubFill",
-          "url": "https://github.com/eratogameai",
-          "target": "_blank"
-        },
-        {
-          "title": "Discord",
-          "icon": "RiDiscordFill",
-          "url": "https://discord.gg/HQNnrzjZQS",
-          "target": "_blank"
-        },
-        {
-          "title": "Email",
-          "icon": "RiMailLine",
-          "url": "mailto:support@er ato la b.ai",
-          "target": "_self"
-        }
-      ]
-    },
+    
     "agreement": {
       "items": [
         {
