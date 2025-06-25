@@ -25,7 +25,7 @@ export default function GameComponent({ gameType }: GameProps) {
     <Card className="p-6">
       <div className="mb-4">
         <iframe
-          src={`https://${gameType}.method.ac/`}
+          src={`https://html-classic.itch.zone/html/13498389/index.html`}
           className="mx-auto max-w-4xl w-full aspect-video rounded-lg"
           allowFullScreen
           loading="lazy"
