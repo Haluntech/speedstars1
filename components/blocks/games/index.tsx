@@ -5,12 +5,21 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import Icon from "@/components/icon";
 
+interface GameItem {
+  id: string;
+  icon: string;
+  name: string;
+  description: string;
+}
+
 export default function GameComponent() {
   const t = useTranslations();
+  
+  const games: GameItem[] = [];
 
   return (
     <Card className="p-6">
-{/* 游戏展示区域 */}
+      {/* 游戏展示区域 */}
       <div className="mb-4">
         <iframe
           src="https://1games.io/embed/speed-stars"
@@ -21,9 +30,7 @@ export default function GameComponent() {
       </div>
       {/* 游戏选择区域 */}
       <div className="grid grid-cols-3 gap-4">
-        {[
-       
-        ].map((game) => (
+        {games.map((game) => (
           <Card key={game.id} className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
             <div className="flex items-center gap-3">
               <Icon name={game.icon} className="text-xl text-primary" />
@@ -35,9 +42,6 @@ export default function GameComponent() {
           </Card>
         ))}
       </div>
-      
-      {/* 游戏状态显示 */}
-      
     </Card>
   );
 }

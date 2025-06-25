@@ -197,11 +197,11 @@ export default function GameList({ gameType }: { gameType?: string }) {
     switch(gameType.toLowerCase()) {
       case 'new':
         return [...games].sort((a,b) => 
-          new Date(b.releaseDate) - new Date(a.releaseDate)
+          new Date(b.releaseDate ?? '1970-01-01').getTime() - new Date(a.releaseDate ?? '1970-01-01').getTime()
         );
       case 'hot':
         return [...games].sort((a,b) => 
-          b.popularity - a.popularity
+          (b.popularity ?? 0) - (a.popularity ?? 0)
         );
       default:
         return games.filter(game => 

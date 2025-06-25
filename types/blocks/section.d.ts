@@ -10,6 +10,7 @@ export interface SectionItem {
   url?: string;
   target?: string;
   children?: SectionItem[];
+  content?: string;
 }
 
 export interface Section {
@@ -22,4 +23,5 @@ export interface Section {
   image?: Image;
   buttons?: Button[];
   items?: SectionItem[];
+  sections?: SectionItem[];
 }

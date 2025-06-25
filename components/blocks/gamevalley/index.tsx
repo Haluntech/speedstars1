@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useTranslations } from 'next-intl';
 import Icon from '@/components/icon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition, IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
 
 interface GameNavItem {
   id: number;
@@ -25,24 +26,31 @@ const gameNavItems: GameNavItem[] = [
   { id: 7, name: 'Tetris', icon: 'fas fa-gamepad text-pink-500', description: 'Classic Puzzle', route: '/gamelist/tetrisgames' }
 ];
 
+interface GameNavProps {
+  currentCategory?: string;
+}
 
-export default function GameNavComponent() {
+export default function GameNavComponent({ currentCategory }: GameNavProps) {
   return (
     <Card className="min-h-fit w-full mx-auto my-6 p-6 bg-gradient-to-b from-sky-400 to-blue-600 backdrop-blur-lg">
       <div className="flex flex-row gap-4 justify-center">
-        {gameNavItems.map((item) => (
-          <a
-            key={item.id}
-            href={item.route}
-            className="group flex items-center gap-3 px-6 py-3  hover:bg-gray-800 transition-colors"
-          >
-            <FontAwesomeIcon 
-              icon={['fas', item.icon.split(' ')[1].replace('fa-','')]} 
-              className={`text-xl ${item.icon.split(' ')[2]} mr-3 text-white`}
-            />
-            <span className="text-base font-semibold text-white group-hover:text-blue-300">{item.name}</span>
-          </a>
-        ))}
+        {gameNavItems.map((item) => {
+          const iconParts = item.icon.split(' ');
+          const iconName = iconParts[1].replace('fa-', '');
+          return (
+            <a
+              key={item.id}
+              href={item.route}
+              className={`group flex items-center gap-3 px-6 py-3 hover:bg-gray-800 transition-colors ${currentCategory === item.name.toLowerCase() ? 'bg-gray-800' : ''}`}
+            >
+              <FontAwesomeIcon 
+                icon={['fas' as IconPrefix, iconName as IconName]} 
+                className={`text-xl ${iconParts[2]} mr-3 text-white`}
+              />
+              <span className="text-base font-semibold text-white group-hover:text-blue-300">{item.name}</span>
+            </a>
+          );
+        })}
       </div>
     </Card>
   );

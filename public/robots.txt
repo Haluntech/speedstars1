@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /*?*q=
-Disallow: /privacy-policy
-Disallow: /terms-of-service
+Allow: /privacy-policy
+Allow: /terms-of-service
+Sitemap: /sitemap.xml

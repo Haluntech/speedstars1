@@ -5,7 +5,11 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import Icon from "@/components/icon";
 
-export default function GameComponent() {
+interface GameProps {
+  gameType?: string;
+}
+
+export default function GameComponent({ gameType }: GameProps) {
   const t = useTranslations();
 
   return (
@@ -13,7 +17,9 @@ export default function GameComponent() {
 {/* 游戏展示区域 */}
       <div className="mb-4">
         <iframe
-          src="https://colorwood.xyz/suikagame/index.html"
+          src={gameType === 'puzzle' 
+            ? "https://colorwood.xyz/suikagame/index.html" 
+            : "https://colorwood.xyz/default-game.html"}
           className="mx-auto max-w-4xl w-full aspect-video rounded-lg"
           allowFullScreen
           loading="lazy"
