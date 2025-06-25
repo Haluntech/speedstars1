@@ -14,7 +14,7 @@
       "items": [
         {
           "title": "New Games",
-          "url": "/new-games",
+          "url": "/newgames",
           "icon": "RiSparkling2Line"
         },
         {
