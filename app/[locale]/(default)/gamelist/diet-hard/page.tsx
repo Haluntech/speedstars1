@@ -15,13 +15,9 @@ export default function BalancePage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-gray-100">
           {/* 游戏介绍 */}
           <section className="bg-gray-800 p-6 rounded-xl">
-            <h2 className="text-2xl font-bold mb-4 text-sky-400">Push boxes, solve puzzles and shift the Balance!</h2>
-            <p className="mb-4">Push the boxes onto the targets. But be careful! Moving between the two game windows shifts the balance of the game.</p>
-            <ul className="space-y-2 text-sm">
-              <li>• Dynamic balance system</li>
-              <li>• 50+ challenging levels</li>
-              <li>• Real-time physics simulation</li>
-            </ul>
+            <h2 className="text-2xl font-bold mb-4 text-sky-400">Diet-balancing</h2>
+            <p className="mb-4">You have to coordinate with your movement & eating skill while keeping your eye on the diet scale, otherwise if you get all the junk food, becomes harder to jump!</p>
+            
           </section>
   
           {/* 玩法指南 */}
