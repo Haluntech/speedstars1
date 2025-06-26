@@ -5,7 +5,7 @@ export default function BalancePage() {
         {/* 游戏画布区域 */}
         <div className="mx-auto max-w-7xl h-[70vh] bg-gray-900 rounded-xl overflow-hidden">
           <iframe
-            src="https://tetris3-b00.pages.dev/"
+            src="https://tetris7.pages.dev/"
             className="w-full h-full"
             allowFullScreen
             sandbox="allow-scripts allow-same-origin"
@@ -16,7 +16,7 @@ export default function BalancePage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-gray-100">
           {/* 游戏介绍 */}
           <section className="bg-gray-800 p-6 rounded-xl">
-            <h2 className="text-2xl font-bold mb-4 text-sky-400">⊗ Tetris 1</h2>
+            <h2 className="text-2xl font-bold mb-4 text-sky-400">⊗ Herry Tetris</h2>
             <p className="mb-4">The goal is to maneuver the falling block pieces to create filled rows. This gets you points. If blocks stack all the way to the top of the screen,  <strong className="text-purple-300">you lose.</strong>...</p>
            
           </section>
@@ -49,9 +49,9 @@ export default function BalancePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "VideoGame",
-        "name": "Tetris 1",
-        "url": "/gamelist/tetris1",
-        "image": "/images/tetris1-cover.jpg",
+        "name": "Herry Tetris",
+        "url": "/gamelist/herrytetris",
+        "image": "/images/herrytetris-cover.jpg",
         "description": "The goal is to maneuver the falling block pieces to create filled rows. This gets you points. If blocks stack all the way to the top of the screen, you lose. Arrow keys to move the blocks. Down makes the block fall more. A/D to rotate the blocks. Have fun!",
         "gamePlatform": ["Web", "Mobile"],
         "genre": ["Puzzle", "Strategy"],

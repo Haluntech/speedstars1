@@ -45,12 +45,10 @@ export default function BalancePage() {
   
           {/* FAQ */}
           <section className="bg-gray-800 p-6 rounded-xl">
-            <h2 className="text-2xl font-bold mb-4 text-rose-400">❗ Display Settings</h2>
+            <h2 className="text-2xl font-bold mb-4 text-rose-400">❗ Goal</h2>
             <dl className="space-y-4">
-              <dt className="font-semibold">Q: How to adjust game size?</dt>
-              <dd className="text-sm text-gray-300 ml-4">Use browser zoom (Ctrl +/-) or Ctrl+Scroll to scale</dd>
-              <dt className="font-semibold">Q: Game not loading properly?</dt>
-              <dd className="text-sm text-gray-300 ml-4">Clear cache and refresh page (Ctrl+F5)</dd>
+              <dt className="font-semibold">Can you beat my high score of 30'599?</dt>
+              
             </dl>
           </section>
         </div>

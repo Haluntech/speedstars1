@@ -1,11 +1,11 @@
 
 
 
-export default function BalancePage() {
+export default function AmmoFlowPage() {
     return (
-      <div className="bg-black min-h-screen p-8 space-y-8">
-        {/* 游戏画布区域 */}
-        <div className="mx-auto max-w-7xl h-[70vh] bg-gray-900 rounded-xl overflow-hidden">
+      <div className="bg-black min-h-screen p-8 space-y-8 text-gray-100">
+        {/* Game Canvas */}
+        <div className="mx-auto max-w-7xl h-[70vh] bg-gray-900 rounded-xl overflow-hidden relative">
           <iframe
             src="https://html-classic.itch.zone/html/13706006/dist/index.html"
             className="w-full h-full"
@@ -13,44 +13,73 @@ export default function BalancePage() {
             sandbox="allow-scripts allow-same-origin"
           />
         </div>
-  
-        {/* 结构化内容区域 */}
+
+        {/* Structured Content Area */}
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-gray-100">
-          {/* 游戏介绍 */}
+          {/* Game Introduction */}
           <section className="bg-gray-800 p-6 rounded-xl">
-            <h2 className="text-2xl font-bold mb-4 text-sky-400">Push boxes, solve puzzles and shift the Balance!</h2>
-            <p className="mb-4">Push the boxes onto the targets. But be careful! Moving between the two game windows shifts the balance of the game.</p>
-            <ul className="space-y-2 text-sm">
-              <li>• Dynamic balance system</li>
-              <li>• 50+ challenging levels</li>
-              <li>• Real-time physics simulation</li>
-            </ul>
+            <h2 className="text-2xl font-bold mb-4 text-blue-400">🎮 Ammo Flow: Strategic Ammo Management</h2>
+            <p className="mb-4">We have a base and we need to defend it. The turrets are already placed - your mission is to control the ammo production and distribution to protect the base from incoming enemies.</p>
+            <p className="text-sm text-gray-400 italic"></p>
           </section>
-  
-          {/* 玩法指南 */}
+
+          {/* Gameplay Mechanics */}
           <section className="bg-gray-800 p-6 rounded-xl">
-            <h2 className="text-2xl font-bold mb-4 text-emerald-400">⊞ Control Guide</h2>
-            <div className="space-y-4">
-              <div className="bg-gray-700 p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">Basic Controls</h3>
-                <p>←→ Move character<br/>Space to push boxes</p>
+            <h2 className="text-2xl font-bold mb-4 text-purple-400">🎯 Gameplay Mechanics</h2>
+
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-cyan-400">Your Role</h3>
+                <p>Turrets are pre-placed and cannot be modified. Your strategic ammo management is the key to victory.</p>
               </div>
-              <div className="bg-gray-700 p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">Balance Tips</h3>
-                <p>Strategically distribute weight between platforms...</p>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-cyan-400">Ammo Production</h3>
+                <p>Manage four factories to produce different ammo types:</p>
+                <ul className="list-disc ml-6 space-y-1 mt-2 text-sm">
+                  <li>Select ammo type for each factory</li>
+                  <li>Assign workers to start production</li>
+                  <li>More workers = faster production</li>
+                  <li>Produced ammo is stored in the Warehouse</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-2 text-cyan-400">Turret Operations</h3>
+                <ul className="list-disc ml-6 space-y-1 text-sm">
+                  <li>Click on turrets to load/unload ammo</li>
+                  <li>Select ammo type from available inventory</li>
+                  <li>Enable auto-load for automatic resupply</li>
+                  <li>Monitor ammo levels and enemy approaching</li>
+                </ul>
               </div>
             </div>
           </section>
-  
-          {/* FAQ */}
+
+          {/* Turret Types */}
           <section className="bg-gray-800 p-6 rounded-xl">
-            <h2 className="text-2xl font-bold mb-4 text-rose-400">❗ Display Settings</h2>
-            <dl className="space-y-4">
-              <dt className="font-semibold">Q: How to adjust game size?</dt>
-              <dd className="text-sm text-gray-300 ml-4">Use browser zoom (Ctrl +/-) or Ctrl+Scroll to scale</dd>
-              <dt className="font-semibold">Q: Game not loading properly?</dt>
-              <dd className="text-sm text-gray-300 ml-4">Clear cache and refresh page (Ctrl+F5)</dd>
-            </dl>
+            <h2 className="text-2xl font-bold mb-4 text-purple-400">🔧 Turret Types</h2>
+            <div className="space-y-4">
+              <div className="bg-gray-700 p-4 rounded-lg">
+                <h3 className="font-semibold mb-1">Machine Gun</h3>
+                <p className="text-sm">Versatile turret effective against all enemy types with appropriate ammo.</p>
+              </div>
+
+              <div className="bg-gray-700 p-4 rounded-lg">
+                <h3 className="font-semibold mb-1">AA (Anti-Air)</h3>
+                <p className="text-sm">Specialized for aerial targets with high accuracy against flying enemies.</p>
+              </div>
+
+              <div className="bg-gray-700 p-4 rounded-lg">
+                <h3 className="font-semibold mb-1">Artillery</h3>
+                <p className="text-sm">Long-range explosive damage with splash effect. Cannot target air units.</p>
+              </div>
+
+              <div className="bg-gray-700 p-4 rounded-lg">
+                <h3 className="font-semibold mb-1">Railgun</h3>
+                <p className="text-sm">Slow-firing but extremely high damage against armored units.</p>
+              </div>
+            </div>
           </section>
         </div>
       </div>

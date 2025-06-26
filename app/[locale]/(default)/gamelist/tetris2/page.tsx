@@ -38,13 +38,13 @@ export default function BalancePage() {
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-gray-100">
         {/* 游戏介绍 */}
         <section className="bg-gray-800 p-6 rounded-xl">
-          <h2 className="text-2xl font-bold mb-4 text-sky-400">⟠ Cosmic Equilibrium Protocol</h2>
-          <p className="mb-4">In SplintaBrix's quantum universe, cosmic order is maintained through <strong className="text-purple-300">dynamic equilibrium mechanisms</strong>...</p>
-          <ul className="space-y-2 text-sm">
-            <li>• 15+ special energy modules</li>
-            <li>• 100+ dynamic background combinations</li>
-            <li>• Infinite level generation algorithm</li>
-          </ul>
+          <h2 className="text-2xl font-bold mb-4 text-sky-400">⊗ Tetris 2</h2>
+            
+            <p className="mb-4">The blocks are made up of 4 cells. You can move them left and right, rotate them, and speed them up.</p>
+            <p className="mb-4">Each time you move a block, it locks in place. If it locks in place, it will be part of the grid.</p>
+            <p className="mb-4">When a row is filled, it is cleared, and you get points. The more rows you clear, the more points you get.</p>
+            <p className="mb-4">The goal is to maneuver the falling block pieces to create filled rows. This gets you points. If blocks stack all the way to the top of the screen,  <strong className="text-purple-300">you lose.</strong>...</p>
+          
         </section>
 
         {/* 玩法指南 */}
@@ -52,13 +52,10 @@ export default function BalancePage() {
           <h2 className="text-2xl font-bold mb-4 text-emerald-400">⊞ Control Matrix</h2>
           <div className="space-y-4">
             <div className="bg-gray-700 p-4 rounded-lg">
-              <h3 className="font-semibold mb-2">Basic Controls</h3>
-              <p>←→ Adjust balance fulcrum<br/>Space for quantum lock</p>
+              <h3 className="font-semibold mb-2"></h3>
+              <p>Left and right arrows to move, <br/>Up arrow to rotate (or A & S), down arrow to speed up.<br/>To play again press the green flag<br/>Space for quantum lock</p>
             </div>
-            <div className="bg-gray-700 p-4 rounded-lg">
-              <h3 className="font-semibold mb-2">Advanced Strategies</h3>
-              <p>Utilize gravity disturbance to create chain reactions...</p>
-            </div>
+            
           </div>
         </section>
 
@@ -66,10 +63,11 @@ export default function BalancePage() {
         <section className="bg-gray-800 p-6 rounded-xl">
           <h2 className="text-2xl font-bold mb-4 text-rose-400">⊗ Quantum FAQ</h2>
           <dl className="space-y-4">
-            <dt className="font-semibold">Q: How to unlock hidden dimensions?</dt>
-            <dd className="text-sm text-gray-300 ml-4">Maintain equilibrium over 60 seconds...</dd>
-            <dt className="font-semibold">Q: How do energy modules inherit?</dt>
-            <dd className="text-sm text-gray-300 ml-4">Through quantum entanglement protocols...</dd>
+            <dt className="font-semibold">Q: How to play?</dt>
+            <dd className="text-sm text-gray-300 ml-4">Left and right arrows to move, <br/>Up arrow to rotate (or A & S), down arrow to speed up.<br/>To play again press the green flag<br/></dd>
+            <dt className="font-semibold">Q: What is quantum lock?</dt>
+            <dd className="text-sm text-gray-300 ml-4">To pause, press the pause button in the upper right corner. To resume, press the pause button again.</dd>
+          
           </dl>
         </section>
       </div>

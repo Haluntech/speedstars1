@@ -3,10 +3,10 @@ import GameComponent from "@/components/blocks/tetrisgames";
 import GameNavComponent from "@/components/blocks/gamevalley";
 import GameList from "@/components/blocks/listgame"
 
-export default function PuzzleGamesPage() {
+export default function TetrisGamesPage() {
   return (
     <div className="max-w-7xl mx-auto p-6 space-y-8">
-      <GameNavComponent currentCategory="puzzle" />
+      <GameNavComponent currentCategory="tetris" />
       
       <GameComponent gameType="tetris" />
 
