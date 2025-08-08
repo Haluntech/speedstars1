@@ -32,11 +32,10 @@ export default function BalancePage() {
             <div className="space-y-4">
               <div className="bg-gray-700 p-4 rounded-lg">
                 <h3 className="font-semibold mb-2">Basic Controls</h3>
-                <p>←→ Move character<br/>Space to push boxes</p>
+                <p>Arrow Keys or WASD: Move the character.<br/>R: Restart the current level.<br/>U: Undo last move.</p>
               </div>
               <div className="bg-gray-700 p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">Balance Tips</h3>
-                <p>Strategically distribute weight between platforms...</p>
+                
               </div>
             </div>
           </section>

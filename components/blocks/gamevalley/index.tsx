@@ -7,6 +7,11 @@ import { useTranslations } from 'next-intl';
 import Icon from '@/components/icon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition, IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faGamepad, faTrophy, faStar, faHeart, faDiamond, faBolt, faChess, faRocket, faFootballBall, faDice, faFish, faHamburger, faCubes, faCrosshairs, faBomb, faShieldAlt, faRunning, faPuzzlePiece, faBox, faCar, faFlagCheckered, faTruck, faArrowUp, faMountain, faFutbol, faPlane, faRobot, faMagic, faSatellite, faChessKing, faGhost, faDragon, faCircle, faArrowRight, faCheck, faInfoCircle, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+
+// Add icons to library
+library.add(faGamepad, faTrophy, faStar, faHeart, faDiamond, faBolt, faChess, faRocket, faFootballBall, faDice, faFish, faHamburger, faCubes, faCrosshairs, faBomb, faShieldAlt, faRunning, faPuzzlePiece, faBox, faCar, faFlagCheckered, faTruck, faArrowUp, faMountain, faFutbol, faPlane, faRobot, faMagic, faSatellite, faChessKing, faGhost, faDragon, faCircle, faArrowRight, faCheck, faInfoCircle, faQuestionCircle);
 
 interface GameNavItem {
   id: number;
@@ -31,6 +36,13 @@ interface GameNavProps {
 }
 
 export default function GameNavComponent({ currentCategory }: GameNavProps) {
+  // Validate icon name against imported icons
+  const getValidIconName = (iconName: string | undefined): IconName => {
+    const processed = (iconName || '').replace(/^fa/i, '').toLowerCase().trim();
+    const validIcons = ['gamepad', 'trophy', 'star', 'heart', 'diamond', 'bolt', 'chess', 'rocket', 'football-ball', 'dice', 'controller', 'shooting-star', 'fish', 'hamburger', 'cubes', 'crosshairs', 'bomb', 'shield-alt', 'running', 'puzzle-piece', 'box', 'car', 'flag-checkered', 'truck', 'arrow-up', 'mountain', 'futbol', 'plane', 'robot', 'magic', 'satellite', 'chess-king', 'gamepad-alt', 'ghost', 'dragon', 'circle', 'arrow-right', 'check', 'info-circle', 'question-circle'];
+    return validIcons.includes(processed) ? (processed as IconName) : 'question-circle';
+  };
+
   return (
     <Card className="min-h-fit w-full mx-auto my-6 p-6 bg-gradient-to-b from-sky-400 to-blue-600 backdrop-blur-lg">
       <div className="flex flex-row gap-4 justify-center">
@@ -44,8 +56,8 @@ export default function GameNavComponent({ currentCategory }: GameNavProps) {
               className={`group flex items-center gap-3 px-6 py-3 hover:bg-gray-800 transition-colors ${currentCategory === item.name.toLowerCase() ? 'bg-gray-800' : ''}`}
             >
               <FontAwesomeIcon 
-                icon={['fas' as IconPrefix, iconName as IconName]} 
-                className={`text-xl ${iconParts[2]} mr-3 text-white`}
+                icon={['fas' as IconPrefix, getValidIconName(iconName)] as [IconPrefix, IconName]} 
+                className={`text-xl ${iconParts[2]} mr-3 text-white`} 
               />
               <span className="text-base font-semibold text-white group-hover:text-blue-300">{item.name}</span>
             </a>

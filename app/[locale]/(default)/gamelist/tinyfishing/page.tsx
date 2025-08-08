@@ -18,27 +18,20 @@ export default function BalancePage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-gray-100">
           {/* 游戏介绍 */}
           <section className="bg-gray-800 p-6 rounded-xl">
-            <h2 className="text-2xl font-bold mb-4 text-sky-400">Push boxes, solve puzzles and shift the Balance!</h2>
-            <p className="mb-4">Push the boxes onto the targets. But be careful! Moving between the two game windows shifts the balance of the game.</p>
-            <ul className="space-y-2 text-sm">
-              <li>• Dynamic balance system</li>
-              <li>• 50+ challenging levels</li>
-              <li>• Real-time physics simulation</li>
-            </ul>
+            <h2 className="text-2xl font-bold mb-4 text-sky-400">Tiny Fishing is a fun fishing game developed by Mad Buffer.</h2>
+            <p className="mb-4">Drag your mouse to catch the fish, and remember to upgrade your gear to get more and bigger fish.</p>
+            <p className="mb-4">Are you a fan of the fishing game? This game is ideal for you to participate in fishing with only your mobile or desktop. After starting the game, let's drop and hold your fishing line and click and swipe your mouse from left to right. Move your hook across the screen as you reel in your line to catch up fish.</p>
+            <p className="mb-4">You'll get paid for all the fish you catch when your line hits the surface! The deeper you go, the rarer the fish become, and you can earn more cash.</p>
+            <p className="mb-4">You can use the money from selling fish to upgrade your fishing gear. You can enhance the number of fish your pole can handle and the distance your line can travel. You'll gain a small amount of gold for each catch, and you might even discover some hidden treasure while fishing.</p>
           </section>
-  
-          {/* 玩法指南 */}
           <section className="bg-gray-800 p-6 rounded-xl">
             <h2 className="text-2xl font-bold mb-4 text-emerald-400">⊞ Control Guide</h2>
             <div className="space-y-4">
               <div className="bg-gray-700 p-4 rounded-lg">
                 <h3 className="font-semibold mb-2">Basic Controls</h3>
-                <p>←→ Move character<br/>Space to push boxes</p>
+                <p>Click and drag to slide the hook left and right and catch as many fish as you can.</p>
               </div>
-              <div className="bg-gray-700 p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">Balance Tips</h3>
-                <p>Strategically distribute weight between platforms...</p>
-              </div>
+              
             </div>
           </section>
   
