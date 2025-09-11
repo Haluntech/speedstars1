@@ -5,7 +5,7 @@ import GameList from "@/components/blocks/listgame"
 
 export default function PuzzleGamesPage() {
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-8">
+    <div className="max-w-30xl mx-auto p-6 space-y-8">
       <GameNavComponent currentCategory="puzzle" />
       
       <GameComponent gameType="puzzle" />

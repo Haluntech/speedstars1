@@ -95,14 +95,14 @@ export default function GameList({ gameType }: { gameType?: string }) {
       {
         id: 12,
         title: 'illumicati',
-        desc: 'puzzel',
+        desc: 'puzzle',
         image: '/imgs/games/illumicati.png',
         path: '/gamelist/illumicati'
       },
       {
         id: 13,
         title: 'balance',
-        desc: 'puzzel',
+        desc: 'puzzle',
         releaseDate: '2024-05-20',
         popularity: 95,
         image: '/imgs/games/balance.png',
@@ -119,7 +119,7 @@ export default function GameList({ gameType }: { gameType?: string }) {
       {
         id: 15,
         title: 'geometrydash',
-        desc: 'puzzel',
+        desc: 'puzzle',
         releaseDate: '2025-06-14',
         popularity: 95,
         image: '/imgs/games/geometrydash.png',
@@ -128,7 +128,7 @@ export default function GameList({ gameType }: { gameType?: string }) {
       {
         id: 16,
         title: 'Ninja3',
-        desc: 'puzzel',
+        desc: 'puzzle',
         releaseDate: '2025-06-14',
         popularity: 95,
         image: '/imgs/games/ninja3.png',
@@ -137,7 +137,7 @@ export default function GameList({ gameType }: { gameType?: string }) {
       {
         id: 17,
         title: 'colorcrusade',
-        desc: 'puzzel',
+        desc: 'puzzle',
         releaseDate: '2025-06-14',
         popularity: 95,
         image: '/imgs/games/colorcrusade.png',
@@ -164,7 +164,7 @@ export default function GameList({ gameType }: { gameType?: string }) {
       {
         id: 20,
         title: 'Treemino',
-        desc: 'puzzel',
+        desc: 'puzzle',
         releaseDate: '2024-06-20',
         popularity: 95,
         image: '/imgs/games/treemino.png',
@@ -197,9 +197,44 @@ export default function GameList({ gameType }: { gameType?: string }) {
         image: '/imgs/games/herrytetris.png',
         path: '/gamelist/herrytetris'
       },
-      
-
-  ];
+      {
+        id: 24,
+        title: 'Wordle',
+        desc: 'math',
+        releaseDate: '2025-06-20',
+        popularity: 95,
+        image: '/imgs/games/wordle1.png',
+        path: '/gamelist/wordle1'
+      },
+      {
+        id: 25,
+        title: 'Wordle 2',
+        desc: 'math',
+        releaseDate: '2025-06-20',
+        popularity: 95,
+        image: '/imgs/games/wordle2.png',
+        path: '/gamelist/wordle2'
+      },
+        {
+        id: 26,
+        title: 'sprunki remix',
+        desc: 'sprunki',
+        releaseDate: '2025-09-11',
+        popularity: 95,
+        image: '/imgs/games/sprunki2.png',
+        path: '/gamelist/sprunki2'
+      },
+      {
+        id: 27,
+        title: 'sprunki3',
+        desc: 'sprunki',
+        releaseDate: '2025-09-11',
+        popularity: 95,
+        image: '/imgs/games/sprunki3.png',
+        path: '/gamelist/sprunki3'
+      },
+    
+];
   
   const filteredGames = (() => {
     if (!gameType) return games;

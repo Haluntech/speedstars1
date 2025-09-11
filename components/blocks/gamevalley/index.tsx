@@ -8,10 +8,10 @@ import Icon from '@/components/icon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition, IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faGamepad, faTrophy, faStar, faHeart, faDiamond, faBolt, faChess, faRocket, faFootballBall, faDice, faFish, faHamburger, faCubes, faCrosshairs, faBomb, faShieldAlt, faRunning, faPuzzlePiece, faBox, faCar, faFlagCheckered, faTruck, faArrowUp, faMountain, faFutbol, faPlane, faRobot, faMagic, faSatellite, faChessKing, faGhost, faDragon, faCircle, faArrowRight, faCheck, faInfoCircle, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { faGamepad, faTrophy, faStar, faHeart, faDiamond, faBolt, faChess, faRocket, faFootballBall, faDice, faFish, faHamburger, faCubes, faCrosshairs, faBomb, faShieldAlt, faRunning, faPuzzlePiece, faBox, faCar, faFlagCheckered, faTruck, faArrowUp, faMountain, faFutbol, faPlane, faRobot, faMagic, faSatellite, faChessKing, faGhost, faDragon, faCircle, faArrowRight, faCheck, faInfoCircle, faQuestionCircle, faPalette, faCalculator } from '@fortawesome/free-solid-svg-icons';
 
 // Add icons to library
-library.add(faGamepad, faTrophy, faStar, faHeart, faDiamond, faBolt, faChess, faRocket, faFootballBall, faDice, faFish, faHamburger, faCubes, faCrosshairs, faBomb, faShieldAlt, faRunning, faPuzzlePiece, faBox, faCar, faFlagCheckered, faTruck, faArrowUp, faMountain, faFutbol, faPlane, faRobot, faMagic, faSatellite, faChessKing, faGhost, faDragon, faCircle, faArrowRight, faCheck, faInfoCircle, faQuestionCircle);
+library.add(faGamepad, faTrophy, faStar, faHeart, faDiamond, faBolt, faChess, faRocket, faFootballBall, faDice, faFish, faHamburger, faCubes, faCrosshairs, faBomb, faShieldAlt, faRunning, faPuzzlePiece, faBox, faCar, faFlagCheckered, faTruck, faArrowUp, faMountain, faFutbol, faPlane, faRobot, faMagic, faSatellite, faChessKing, faGhost, faDragon, faCircle, faArrowRight, faCheck, faInfoCircle, faQuestionCircle, faPalette, faCalculator);
 
 interface GameNavItem {
   id: number;
@@ -22,12 +22,12 @@ interface GameNavItem {
 }
 
 const gameNavItems: GameNavItem[] = [
-  { id: 1, name: 'Puzzle Games', icon: 'fas fa-palette text-purple-500', description: 'Puzzle games', route: '/gamelist/puzzlegames' },
-  { id: 2, name: 'Color Games', icon: 'fas fa-palette text-purple-500', description: 'Color Games', route: '/gamelist/colorgames' },
+  { id: 1, name: 'Puzzle Games', icon: 'fas fa-puzzle-piece text-purple-500', description: 'Puzzle games', route: '/gamelist/puzzlegames' },
+  { id: 2, name: 'Color Games', icon: 'fas fa-palette text-fuchsia-400', description: 'Color Games', route: '/gamelist/colorgames' },
   { id: 3, name: 'Math Games', icon: 'fas fa-calculator text-green-500', description: 'Math Games', route: '/gamelist/mathgames' },
-  { id: 4, name: 'Block Games', icon: 'fas fa-cube text-red-500', description: 'Block Games', route: '/gamelist/blockgames' },
+  { id: 4, name: 'Block Games', icon: 'fas fa-cubes text-red-500', description: 'Block Games', route: '/gamelist/blockgames' },
   { id: 5, name: 'Horror Games', icon: 'fas fa-ghost text-orange-500', description: 'Horror Games', route: '/gamelist/horrorgames' },
-  { id: 6, name: 'Armor Games', icon: 'fas fa-ghost text-orange-500', description: 'Armor Games', route: '/gamelist/Armorgames' },
+  { id: 6, name: 'Sprunki', icon: 'fas fa-ghost text-orange-500', description: 'Sprunki', route: '/gamelist/sprunki' },
   { id: 7, name: 'Tetris', icon: 'fas fa-gamepad text-pink-500', description: 'Classic Puzzle', route: '/gamelist/tetrisgames' }
 ];
 
@@ -39,7 +39,7 @@ export default function GameNavComponent({ currentCategory }: GameNavProps) {
   // Validate icon name against imported icons
   const getValidIconName = (iconName: string | undefined): IconName => {
     const processed = (iconName || '').replace(/^fa/i, '').toLowerCase().trim();
-    const validIcons = ['gamepad', 'trophy', 'star', 'heart', 'diamond', 'bolt', 'chess', 'rocket', 'football-ball', 'dice', 'controller', 'shooting-star', 'fish', 'hamburger', 'cubes', 'crosshairs', 'bomb', 'shield-alt', 'running', 'puzzle-piece', 'box', 'car', 'flag-checkered', 'truck', 'arrow-up', 'mountain', 'futbol', 'plane', 'robot', 'magic', 'satellite', 'chess-king', 'gamepad-alt', 'ghost', 'dragon', 'circle', 'arrow-right', 'check', 'info-circle', 'question-circle'];
+    const validIcons = ['gamepad', 'trophy', 'star', 'heart', 'diamond', 'bolt', 'chess', 'rocket', 'football-ball', 'dice', 'controller', 'shooting-star', 'fish', 'hamburger', 'cubes', 'crosshairs', 'bomb', 'shield-alt', 'running', 'puzzle-piece', 'box', 'car', 'flag-checkered', 'truck', 'arrow-up', 'mountain', 'futbol', 'plane', 'robot', 'magic', 'satellite', 'chess-king', 'gamepad-alt', 'ghost', 'dragon', 'circle', 'arrow-right', 'check', 'info-circle', 'question-circle', 'palette', 'calculator'];
     return validIcons.includes(processed) ? (processed as IconName) : 'question-circle';
   };
 

@@ -14,7 +14,7 @@ const newGamesSinceMay2025 = [
 
 export default function NewGamesPage() {
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-8">
+    <div className="max-w-30xl mx-auto p-6 space-y-8">
       <GameNavComponent currentCategory="new-releases" />
       
       <section className="bg-gradient-to-br from-indigo-900 via-purple-900 to-gray-900 rounded-2xl p-8 mb-8">

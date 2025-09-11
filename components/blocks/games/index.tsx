@@ -18,6 +18,40 @@ export default function GameComponent() {
   
   const games: GameItem[] = [];
 
+  useEffect(() => {
+    // 模拟进度条
+    let progress = 0;
+    const progressDiv = document.querySelector('.progress') as HTMLElement | null;
+    const progressContainer = document.querySelector('.progress-container') as HTMLElement | null;
+    const interval = setInterval(() => {
+      if (progress < 90 && progressDiv) {
+        progress += Math.random() * 10;
+        progressDiv.style.width = `${progress}%`;
+      }
+    }, 200);
+  
+    // 监听 iframe 加载完成
+    const iframe = document.getElementById('game-frame') as HTMLIFrameElement | null;
+    if (iframe) {
+      iframe.onload = function () {
+        if (progressDiv) {
+          clearInterval(interval);
+          progressDiv.style.width = '100%';
+          // 1秒后隐藏进度条
+          setTimeout(() => {
+            if (progressContainer) {
+              progressContainer.style.display = 'none';
+            }
+          }, 1000);
+        }
+      };
+    }
+  
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <Card className="p-6">
       {/* 游戏展示区域 */}
@@ -41,7 +75,7 @@ export default function GameComponent() {
         <button 
           className="absolute bottom-4 right-4 bg-primary/80 hover:bg-primary text-white p-2 rounded-full shadow-lg transition-all"
           onClick={() => {
-            const iframe = document.querySelector('iframe');
+            const iframe = document.querySelector('iframe') as any;
             if (iframe?.requestFullscreen) {
               iframe.requestFullscreen();
             } else if (iframe?.webkitRequestFullscreen) { /* Safari */
@@ -72,37 +106,3 @@ export default function GameComponent() {
     </Card>
   );
 }
-
-useEffect(() => {
-  // 模拟进度条
-  let progress = 0;
-  const progressDiv = document.querySelector('.progress');
-  const progressContainer = document.querySelector('.progress-container');
-  const interval = setInterval(() => {
-    if (progress < 90 && progressDiv) {
-      progress += Math.random() * 10;
-      progressDiv.style.width = `${progress}%`;
-    }
-  }, 200);
-
-  // 监听 iframe 加载完成
-  const iframe = document.getElementById('game-frame');
-  if (iframe) {
-    iframe.onload = function() {
-      if (progressDiv) {
-        clearInterval(interval);
-        progressDiv.style.width = '100%';
-        // 1秒后隐藏进度条
-        setTimeout(() => {
-          if (progressContainer) {
-            progressContainer.style.display = 'none';
-          }
-        }, 1000);
-      }
-    };
-  }
-
-  return () => {
-    clearInterval(interval);
-  };
-}, []);

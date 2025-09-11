@@ -13,7 +13,7 @@ const hotGames = [
 
 export default function HotGamesPage() {
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-8">
+    <div className="max-w-30xl mx-auto p-6 space-y-8">
       <GameNavComponent currentCategory="hot-games" />
       
       <section className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 rounded-2xl p-8 mb-8 shadow-xl">
