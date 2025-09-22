@@ -32,9 +32,7 @@ export default function GameComponent({ gameType }: GameProps) {
       </div>
       {/* 游戏选择区域 */}
       <div className="grid grid-cols-3 gap-4">
-        {[
-          
-        ].map((game) => (
+        {([] as Game[]).map((game) => (
           <Card key={game.id} className="p-4 cursor-pointer hover:bg-gray-50 transition-colors">
             <div className="flex items-center gap-3">
               <Icon name={game.icon} className="text-xl text-primary" />

@@ -3,10 +3,10 @@
   "theme": "light",
   "header": {
     "brand": {
-      "title": "ShipAny",
+      "title": "Speedstars",
       "logo": {
         "src": "/logo.png",
-        "alt": "ShipAny"
+        "alt": "Speedstars"
       },
       "url": "/"
     },
@@ -31,8 +31,8 @@
     },
     "buttons": [
       {
-        "title": "获取 ShipAny",
-        "url": "https://shipany.ai",
+        "title": "",
+        "url": "https://speedstars1.com",
         "target": "_blank",
         "variant": "link",
         "icon": "RiArrowRightUpLine"
@@ -43,9 +43,9 @@
     "show_locale": true
   },
   "hero": {
-    "title": "几小时内快速构建 AI 创业项目，而不是几天",
-    "highlight_text": "快速构建",
-    "description": "ShipAny 是一个用于构建 AI SaaS 创业项目的 NextJS 模板。<br/>通过丰富的模板和组件快速启动。",
+    "title": "Speedstars是一个好玩的游戏。",
+    "highlight_text": "免费游戏",
+    "description": "Speedstars 免费玩的游戏网站",
     "announcement": {
       "label": "2025",
       "title": "🎉 新年快乐",

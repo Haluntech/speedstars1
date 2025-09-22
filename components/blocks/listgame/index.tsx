@@ -234,6 +234,36 @@ export default function GameList({ gameType }: { gameType?: string }) {
         path: '/gamelist/sprunki3'
       },
     
+
+      {
+        id: 28,
+        title: 'spacedout',
+        desc: 'sprunki',
+        releaseDate: '2025-09-22',
+        popularity: 95,
+        image: '/imgs/games/spacedout.png',
+        path: '/gamelist/spacedout'
+      },
+
+      {
+        id: 29,
+        title: 'coolasicecream',
+        desc: 'sprunki',
+        releaseDate: '2025-09-22',
+        popularity: 95,
+        image: '/imgs/games/coolasicecream.png',
+        path: '/gamelist/coolasicecream'
+      },
+
+      {
+        id: 30,
+        title: 'sprunkiexp',
+        desc: 'sprunki',
+        releaseDate: '2025-09-22',
+        popularity: 95,
+        image: '/imgs/games/sprunkiexp.png',
+        path: '/gamelist/sprunkiexp'
+      },
 ];
   
   const filteredGames = (() => {
