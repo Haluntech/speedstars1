@@ -264,6 +264,26 @@ export default function GameList({ gameType }: { gameType?: string }) {
         image: '/imgs/games/sprunkiexp.png',
         path: '/gamelist/sprunkiexp'
       },
+
+      {
+        id: 31,
+        title: 'sprunky',
+        desc: 'sprunki',
+        releaseDate: '2025-09-22',
+        popularity: 95,
+        image: '/imgs/games/sprunky.png',
+        path: '/gamelist/sprunky'
+      },
+
+      {
+        id: 32,
+        title: 'sprunkfruity',
+        desc: 'sprunki',
+        releaseDate: '2025-09-23',
+        popularity: 95,
+        image: '/imgs/games/sprunkfruity.png',
+        path: '/gamelist/sprunkfruity'
+      },
 ];
   
   const filteredGames = (() => {
