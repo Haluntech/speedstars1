@@ -1,6 +1,6 @@
 import { getLandingPage } from "@/services/page";
 import GameNavComponent from "@/components/blocks/gamevalley";
-import HotGameCard from "@/components/blocks/hotgamecard"
+
 
 // Hot games data with comprehensive SEO optimization
 const hotGames = [

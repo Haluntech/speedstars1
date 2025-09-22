@@ -5,7 +5,7 @@ export default function BalancePage() {
         {/* 游戏画布区域 */}
         <div className="mx-auto max-w-7xl h-[70vh] bg-gray-900 rounded-xl overflow-hidden">
           <iframe
-            src="https://wordle1.eratogame.com"
+            src="https://wordle2.eratogame.com"
             className="w-full h-full"
             allowFullScreen
             sandbox="allow-scripts allow-same-origin"
