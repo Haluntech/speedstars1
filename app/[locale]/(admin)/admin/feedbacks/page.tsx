@@ -2,7 +2,7 @@ import { TableColumn } from "@/types/blocks/table";
 import TableSlot from "@/components/dashboard/slots/table";
 import { Table as TableSlotType } from "@/types/slots/table";
 import { getFeedbacks } from "@/models/feedback";
-import moment from "moment";
+// Removed heavy moment library - using native Date API instead
 
 export const runtime = "edge";
 
@@ -42,7 +42,18 @@ export default async function () {
     {
       name: "created_at",
       title: "Created At",
-      callback: (row) => moment(row.created_at).format("YYYY-MM-DD HH:mm:ss"),
+      callback: (row) => {
+        const date = new Date(row.created_at);
+        return date.toLocaleString('en-CA', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(',', '');
+      },
     },
     {
       name: "actions",
