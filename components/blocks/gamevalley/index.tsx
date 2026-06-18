@@ -1,17 +1,12 @@
 'use client';
 
 import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useTranslations } from 'next-intl';
-import Icon from '@/components/icon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition, IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faGamepad, faTrophy, faStar, faHeart, faDiamond, faBolt, faChess, faRocket, faFootballBall, faDice, faFish, faHamburger, faCubes, faCrosshairs, faBomb, faShieldAlt, faRunning, faPuzzlePiece, faBox, faCar, faFlagCheckered, faTruck, faArrowUp, faMountain, faFutbol, faPlane, faRobot, faMagic, faSatellite, faChessKing, faGhost, faDragon, faCircle, faArrowRight, faCheck, faInfoCircle, faQuestionCircle, faPalette, faCalculator } from '@fortawesome/free-solid-svg-icons';
+import { faGamepad, faTrophy, faStar, faBolt, faRocket, faFootballBall, faRunning, faCar, faFlagCheckered } from '@fortawesome/free-solid-svg-icons';
 
-// Add icons to library
-library.add(faGamepad, faTrophy, faStar, faHeart, faDiamond, faBolt, faChess, faRocket, faFootballBall, faDice, faFish, faHamburger, faCubes, faCrosshairs, faBomb, faShieldAlt, faRunning, faPuzzlePiece, faBox, faCar, faFlagCheckered, faTruck, faArrowUp, faMountain, faFutbol, faPlane, faRobot, faMagic, faSatellite, faChessKing, faGhost, faDragon, faCircle, faArrowRight, faCheck, faInfoCircle, faQuestionCircle, faPalette, faCalculator);
+library.add(faGamepad, faTrophy, faStar, faBolt, faRocket, faFootballBall, faRunning, faCar, faFlagCheckered);
 
 interface GameNavItem {
   id: number;
@@ -19,16 +14,17 @@ interface GameNavItem {
   icon: string;
   description: string;
   route: string;
+  key: string;
 }
 
 const gameNavItems: GameNavItem[] = [
-  { id: 1, name: 'Puzzle Games', icon: 'fas fa-puzzle-piece text-purple-500', description: 'Puzzle games', route: '/gamelist/puzzlegames' },
-  { id: 2, name: 'Color Games', icon: 'fas fa-palette text-fuchsia-400', description: 'Color Games', route: '/gamelist/colorgames' },
-  { id: 3, name: 'Math Games', icon: 'fas fa-calculator text-green-500', description: 'Math Games', route: '/gamelist/mathgames' },
-  { id: 4, name: 'Block Games', icon: 'fas fa-cubes text-red-500', description: 'Block Games', route: '/gamelist/blockgames' },
-  { id: 5, name: 'Horror Games', icon: 'fas fa-ghost text-orange-500', description: 'Horror Games', route: '/gamelist/horrorgames' },
-  { id: 6, name: 'Sprunki', icon: 'fas fa-ghost text-orange-500', description: 'Sprunki', route: '/gamelist/sprunki' },
-  { id: 7, name: 'Tetris', icon: 'fas fa-gamepad text-pink-500', description: 'Classic Puzzle', route: '/gamelist/tetrisgames' }
+  { id: 1, name: 'Speed Stars', icon: 'fas fa-bolt text-yellow-300', description: 'Play the main Speed Stars game', route: '/', key: 'speed-stars' },
+  { id: 2, name: 'Running Games', icon: 'fas fa-running text-lime-300', description: 'Sprint, jump, dodge, and chase records', route: '/gamelist/running-games', key: 'running' },
+  { id: 3, name: 'Sports Games', icon: 'fas fa-football-ball text-emerald-300', description: 'Fast sports arcade games', route: '/gamelist/sports-games', key: 'sports' },
+  { id: 4, name: 'Racing Games', icon: 'fas fa-flag-checkered text-orange-300', description: 'Race, drift, and react fast', route: '/gamelist/racing-games', key: 'racing' },
+  { id: 5, name: 'Skill Games', icon: 'fas fa-rocket text-sky-300', description: 'Timing and reflex challenges', route: '/gamelist/skill-games', key: 'skill' },
+  { id: 6, name: 'New Games', icon: 'fas fa-star text-pink-300', description: 'Newest games on SpeedStars1', route: '/gamelist/new-games', key: 'new' },
+  { id: 7, name: 'Hot Games', icon: 'fas fa-trophy text-amber-300', description: 'Most popular games', route: '/gamelist/hotgames', key: 'hot' },
 ];
 
 interface GameNavProps {
@@ -36,30 +32,35 @@ interface GameNavProps {
 }
 
 export default function GameNavComponent({ currentCategory }: GameNavProps) {
-  // Validate icon name against imported icons
   const getValidIconName = (iconName: string | undefined): IconName => {
     const processed = (iconName || '').replace(/^fa/i, '').toLowerCase().trim();
-    const validIcons = ['gamepad', 'trophy', 'star', 'heart', 'diamond', 'bolt', 'chess', 'rocket', 'football-ball', 'dice', 'controller', 'shooting-star', 'fish', 'hamburger', 'cubes', 'crosshairs', 'bomb', 'shield-alt', 'running', 'puzzle-piece', 'box', 'car', 'flag-checkered', 'truck', 'arrow-up', 'mountain', 'futbol', 'plane', 'robot', 'magic', 'satellite', 'chess-king', 'gamepad-alt', 'ghost', 'dragon', 'circle', 'arrow-right', 'check', 'info-circle', 'question-circle', 'palette', 'calculator'];
-    return validIcons.includes(processed) ? (processed as IconName) : 'question-circle';
+    const validIcons = ['gamepad', 'trophy', 'star', 'bolt', 'rocket', 'football-ball', 'running', 'car', 'flag-checkered'];
+    return validIcons.includes(processed) ? (processed as IconName) : 'gamepad';
   };
 
   return (
-    <Card className="min-h-fit w-full mx-auto my-6 p-6 bg-gradient-to-b from-sky-400 to-blue-600 backdrop-blur-lg">
-      <div className="flex flex-row gap-4 justify-center">
+    <Card className="w-full mx-auto my-6 p-4 sm:p-5 bg-gradient-to-r from-slate-950 via-blue-800 to-emerald-600 border border-white/10 shadow-xl overflow-hidden">
+      <div className="flex gap-3 overflow-x-auto pb-1 justify-start lg:justify-center scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-transparent">
         {gameNavItems.map((item) => {
           const iconParts = item.icon.split(' ');
           const iconName = iconParts[1].replace('fa-', '');
+          const isActive = currentCategory === item.key || currentCategory === item.name.toLowerCase();
           return (
             <a
               key={item.id}
               href={item.route}
-              className={`group flex items-center gap-3 px-6 py-3 hover:bg-gray-800 transition-colors ${currentCategory === item.name.toLowerCase() ? 'bg-gray-800' : ''}`}
+              aria-label={item.description}
+              className={`group shrink-0 flex items-center gap-3 rounded-full border px-5 py-3 transition-all duration-200 ${
+                isActive
+                  ? 'bg-white text-blue-900 border-white shadow-lg scale-[1.02]'
+                  : 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/40'
+              }`}
             >
-              <FontAwesomeIcon 
-                icon={['fas' as IconPrefix, getValidIconName(iconName)] as [IconPrefix, IconName]} 
-                className={`text-xl ${iconParts[2]} mr-3 text-white`} 
+              <FontAwesomeIcon
+                icon={['fas' as IconPrefix, getValidIconName(iconName)] as [IconPrefix, IconName]}
+                className={`text-lg ${isActive ? 'text-blue-700' : iconParts[2]}`}
               />
-              <span className="text-base font-semibold text-white group-hover:text-blue-300">{item.name}</span>
+              <span className="text-sm sm:text-base font-bold whitespace-nowrap tracking-tight">{item.name}</span>
             </a>
           );
         })}
