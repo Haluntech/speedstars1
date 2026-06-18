@@ -2,11 +2,11 @@
 
 import { Card } from '@/components/ui/card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition, IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
+import { IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faGamepad, faTrophy, faStar, faBolt, faRocket, faFootballBall, faRunning, faCar, faFlagCheckered } from '@fortawesome/free-solid-svg-icons';
+import { faGamepad, faTrophy, faStar, faBolt, faRocket, faFootballBall, faRunning, faFlagCheckered } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faGamepad, faTrophy, faStar, faBolt, faRocket, faFootballBall, faRunning, faCar, faFlagCheckered);
+library.add(faGamepad, faTrophy, faStar, faBolt, faRocket, faFootballBall, faRunning, faFlagCheckered);
 
 interface GameNavItem {
   id: number;
@@ -34,7 +34,7 @@ interface GameNavProps {
 export default function GameNavComponent({ currentCategory }: GameNavProps) {
   const getValidIconName = (iconName: string | undefined): IconName => {
     const processed = (iconName || '').replace(/^fa/i, '').toLowerCase().trim();
-    const validIcons = ['gamepad', 'trophy', 'star', 'bolt', 'rocket', 'football-ball', 'running', 'car', 'flag-checkered'];
+    const validIcons = ['gamepad', 'trophy', 'star', 'bolt', 'rocket', 'football-ball', 'running', 'flag-checkered'];
     return validIcons.includes(processed) ? (processed as IconName) : 'gamepad';
   };
 
