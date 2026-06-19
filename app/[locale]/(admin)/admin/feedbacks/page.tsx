@@ -2,11 +2,11 @@ import { TableColumn } from "@/types/blocks/table";
 import TableSlot from "@/components/dashboard/slots/table";
 import { Table as TableSlotType } from "@/types/slots/table";
 import { getFeedbacks } from "@/models/feedback";
-// Removed heavy moment library - using native Date API instead
 
-export const runtime = "edge";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-export default async function () {
+export default async function FeedbacksPage() {
   const feedbacks = await getFeedbacks(1, 50);
 
   const columns: TableColumn[] = [
@@ -23,6 +23,7 @@ export default async function () {
             <img
               src={row.user?.avatar_url || ""}
               className="w-8 h-8 rounded-full"
+              alt={row.user?.nickname || "User avatar"}
             />
             <span>{row.user?.nickname}</span>
           </div>
@@ -44,15 +45,17 @@ export default async function () {
       title: "Created At",
       callback: (row) => {
         const date = new Date(row.created_at);
-        return date.toLocaleString('en-CA', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false
-        }).replace(',', '');
+        return date
+          .toLocaleString("en-CA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false,
+          })
+          .replace(",", "");
       },
     },
     {

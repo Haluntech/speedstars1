@@ -5,7 +5,7 @@ import { getIsoTimestr } from "@/lib/time";
 import { getUserUuid } from "@/services/user";
 import { insertFeedback } from "@/models/feedback";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
