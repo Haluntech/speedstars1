@@ -12,47 +12,109 @@ type Game = {
   path: string;
 };
 
-const fallbackImage =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%230f172a'/%3E%3Cstop offset='.55' stop-color='%231d4ed8'/%3E%3Cstop offset='1' stop-color='%2322c55e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23g)'/%3E%3Cpath d='M80 320 L260 170 L370 250 L520 115 L720 290' stroke='white' stroke-width='26' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='.85'/%3E%3Ccircle cx='620' cy='145' r='42' fill='%23facc15' opacity='.95'/%3E%3Ctext x='400' y='380' text-anchor='middle' font-family='Arial, sans-serif' font-size='42' font-weight='700' fill='white'%3ESpeedStars1%3C/text%3E%3C/svg%3E";
+const categoryGradients: Record<string, [string, string, string]> = {
+  running: ['#0f172a', '#2563eb', '#22c55e'],
+  racing: ['#111827', '#ef4444', '#f97316'],
+  sports: ['#052e16', '#16a34a', '#facc15'],
+  skill: ['#1e1b4b', '#7c3aed', '#06b6d4'],
+  puzzle: ['#312e81', '#9333ea', '#f472b6'],
+  action: ['#111827', '#dc2626', '#f59e0b'],
+  tetris: ['#172554', '#0891b2', '#a3e635'],
+  sprunki: ['#3b0764', '#db2777', '#f97316'],
+  math: ['#064e3b', '#0d9488', '#facc15'],
+  fishing: ['#083344', '#0284c7', '#7dd3fc'],
+};
+
+const escapeSvgText = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+
+const createGameThumbnail = (game: Game) => {
+  const [start, middle, end] = categoryGradients[game.desc.toLowerCase()] ?? categoryGradients.skill;
+  const title = escapeSvgText(game.title);
+  const category = escapeSvgText(game.desc.toUpperCase());
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop stop-color="${start}"/>
+          <stop offset="0.55" stop-color="${middle}"/>
+          <stop offset="1" stop-color="${end}"/>
+        </linearGradient>
+        <linearGradient id="track" x1="0" y1="0" x2="1" y2="0">
+          <stop stop-color="#ffffff" stop-opacity="0.15"/>
+          <stop offset="1" stop-color="#ffffff" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="450" rx="0" fill="url(#bg)"/>
+      <circle cx="690" cy="90" r="70" fill="#ffffff" opacity="0.14"/>
+      <circle cx="120" cy="340" r="100" fill="#ffffff" opacity="0.08"/>
+      <path d="M-20 315 C130 250 215 385 360 300 S600 160 840 245" stroke="url(#track)" stroke-width="26" fill="none" stroke-linecap="round"/>
+      <path d="M70 332 L240 240 L315 290 L445 180 L735 315" stroke="#ffffff" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.62"/>
+      <g transform="translate(94 86)">
+        <rect x="0" y="0" width="164" height="42" rx="21" fill="#ffffff" opacity="0.18"/>
+        <text x="82" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="800" fill="#ffffff" letter-spacing="2">${category}</text>
+      </g>
+      <text x="400" y="222" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="900" fill="#ffffff">${title}</text>
+      <text x="400" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff" opacity="0.86">Play Online on SpeedStars1</text>
+      <text x="400" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="#ffffff" opacity="0.72">SPEED • SKILL • ARCADE</text>
+    </svg>`;
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+};
+
+const getCardImage = (game: Game) => {
+  // The new SpeedStars-focused cards do not have real PNG assets in the repo yet.
+  // Use generated SVG thumbnails immediately instead of showing missing image icons.
+  if (game.id < 100) {
+    return createGameThumbnail(game);
+  }
+
+  return game.image;
+};
 
 const speedStarsGames: Game[] = [
-  { id: 1, title: 'Speed Stars', desc: 'running', releaseDate: '2026-06-01', popularity: 100, image: '/imgs/games/speed-stars.png', path: '/' },
-  { id: 2, title: 'Track Dash', desc: 'running', releaseDate: '2026-05-01', popularity: 99, image: '/imgs/games/track-dash.png', path: '/gamelist/track-dash' },
-  { id: 3, title: 'QWOP', desc: 'running', releaseDate: '2026-06-19', popularity: 98, image: '/imgs/games/qwop.png', path: '/gamelist/qwop' },
-  { id: 4, title: 'Vex Try To Fly', desc: 'skill', releaseDate: '2026-06-19', popularity: 97, image: '/imgs/games/vex-try-to-fly.png', path: '/gamelist/vex-try-to-fly' },
-  { id: 5, title: 'Stumble Race', desc: 'running', releaseDate: '2026-06-19', popularity: 96, image: '/imgs/games/stumble-race.png', path: '/gamelist/stumble-race' },
-  { id: 6, title: 'Slope Rider', desc: 'racing', releaseDate: '2026-06-19', popularity: 96, image: '/imgs/games/slope-rider.png', path: '/gamelist/slope-rider' },
-  { id: 7, title: 'Speed Slope', desc: 'skill', releaseDate: '2026-06-19', popularity: 95, image: '/imgs/games/speed-slope.png', path: '/gamelist/speed-slope' },
-  { id: 8, title: 'Soccer Bros 2', desc: 'sports', releaseDate: '2026-06-19', popularity: 95, image: '/imgs/games/soccer-bros-2.png', path: '/gamelist/soccer-bros-2' },
-  { id: 9, title: 'Volley.io', desc: 'sports', releaseDate: '2026-06-19', popularity: 94, image: '/imgs/games/volley-io.png', path: '/gamelist/volley-io' },
-  { id: 10, title: 'Drift Rush', desc: 'racing', releaseDate: '2026-06-19', popularity: 94, image: '/imgs/games/drift-rush.png', path: '/gamelist/drift-rush' },
-  { id: 11, title: 'Traffic Road', desc: 'racing', releaseDate: '2026-06-19', popularity: 93, image: '/imgs/games/traffic-road.png', path: '/gamelist/traffic-road' },
-  { id: 12, title: 'Tap Road', desc: 'skill', releaseDate: '2026-06-19', popularity: 93, image: '/imgs/games/tap-road.png', path: '/gamelist/tap-road' },
-  { id: 13, title: 'Golf Hit', desc: 'sports', releaseDate: '2026-06-19', popularity: 92, image: '/imgs/games/golf-hit.png', path: '/gamelist/golf-hit' },
-  { id: 14, title: 'RocketGoal.io', desc: 'sports', releaseDate: '2026-06-19', popularity: 92, image: '/imgs/games/rocketgoal-io.png', path: '/gamelist/rocketgoal-io' },
-  { id: 15, title: 'Skate Dash', desc: 'racing', releaseDate: '2026-06-19', popularity: 91, image: '/imgs/games/skate-dash.png', path: '/gamelist/skate-dash' },
-  { id: 16, title: 'Stunt Bike Extreme', desc: 'racing', releaseDate: '2026-06-19', popularity: 91, image: '/imgs/games/stunt-bike-extreme.png', path: '/gamelist/stunt-bike-extreme' },
-  { id: 17, title: 'Slope 2', desc: 'skill', releaseDate: '2026-06-19', popularity: 90, image: '/imgs/games/slope-2.png', path: '/gamelist/slope-2' },
-  { id: 18, title: 'Speed Legends', desc: 'running', releaseDate: '2026-06-18', popularity: 89, image: '/imgs/games/speed-legends.png', path: '/gamelist/speed-legends' },
-  { id: 19, title: 'Sprinter', desc: 'running', releaseDate: '2026-06-18', popularity: 88, image: '/imgs/games/sprinter.png', path: '/gamelist/sprinter' },
-  { id: 20, title: 'Athletics Hero', desc: 'running', releaseDate: '2026-06-18', popularity: 87, image: '/imgs/games/athletics-hero.png', path: '/gamelist/athletics-hero' },
-  { id: 21, title: 'Hurdles', desc: 'running', releaseDate: '2026-06-18', popularity: 86, image: '/imgs/games/hurdles.png', path: '/gamelist/hurdles' },
-  { id: 22, title: 'Run 3', desc: 'running', releaseDate: '2026-06-18', popularity: 85, image: '/imgs/games/run-3.png', path: '/gamelist/run-3' },
-  { id: 23, title: 'Running Fred', desc: 'running', releaseDate: '2026-06-18', popularity: 84, image: '/imgs/games/running-fred.png', path: '/gamelist/running-fred' },
-  { id: 24, title: 'Vex', desc: 'skill', releaseDate: '2026-06-18', popularity: 83, image: '/imgs/games/vex.png', path: '/gamelist/vex' },
-  { id: 25, title: 'Slope', desc: 'skill', releaseDate: '2026-06-18', popularity: 82, image: '/imgs/games/slope.png', path: '/gamelist/slope' },
-  { id: 26, title: 'Tunnel Rush', desc: 'skill', releaseDate: '2026-06-18', popularity: 81, image: '/imgs/games/tunnel-rush.png', path: '/gamelist/tunnel-rush' },
-  { id: 27, title: 'Drive Mad', desc: 'racing', releaseDate: '2026-06-18', popularity: 80, image: '/imgs/games/drive-mad.png', path: '/gamelist/drive-mad' },
-  { id: 28, title: 'Drift Boss', desc: 'racing', releaseDate: '2026-06-18', popularity: 79, image: '/imgs/games/drift-boss.png', path: '/gamelist/drift-boss' },
-  { id: 29, title: 'Moto X3M', desc: 'racing', releaseDate: '2026-06-18', popularity: 78, image: '/imgs/games/moto-x3m.png', path: '/gamelist/moto-x3m' },
-  { id: 30, title: 'Traffic Rider', desc: 'racing', releaseDate: '2026-06-18', popularity: 77, image: '/imgs/games/traffic-rider.png', path: '/gamelist/traffic-rider' },
-  { id: 31, title: 'Geometry Dash', desc: 'skill', releaseDate: '2025-06-14', popularity: 76, image: '/imgs/games/geometrydash.png', path: '/gamelist/geometry-dash' },
-  { id: 32, title: 'Curve Rush', desc: 'skill', releaseDate: '2026-06-18', popularity: 75, image: '/imgs/games/curve-rush.png', path: '/gamelist/curve-rush' },
-  { id: 33, title: 'Soccer Random', desc: 'sports', releaseDate: '2026-06-18', popularity: 74, image: '/imgs/games/soccer-random.png', path: '/gamelist/soccer-random' },
-  { id: 34, title: 'Basket Random', desc: 'sports', releaseDate: '2026-06-18', popularity: 73, image: '/imgs/games/basket-random.png', path: '/gamelist/basket-random' },
-  { id: 35, title: 'Volley Random', desc: 'sports', releaseDate: '2026-06-18', popularity: 72, image: '/imgs/games/volley-random.png', path: '/gamelist/volley-random' },
-  { id: 36, title: 'Football Legends', desc: 'sports', releaseDate: '2026-06-18', popularity: 71, image: '/imgs/games/football-legends.png', path: '/gamelist/football-legends' },
-  { id: 37, title: 'Basketball Stars', desc: 'sports', releaseDate: '2026-06-18', popularity: 70, image: '/imgs/games/basketball-stars.png', path: '/gamelist/basketball-stars' },
+  { id: 1, title: 'Speed Stars', desc: 'running', releaseDate: '2026-06-01', popularity: 100, image: '', path: '/' },
+  { id: 2, title: 'Track Dash', desc: 'running', releaseDate: '2026-05-01', popularity: 99, image: '', path: '/gamelist/track-dash' },
+  { id: 3, title: 'QWOP', desc: 'running', releaseDate: '2026-06-19', popularity: 98, image: '', path: '/gamelist/qwop' },
+  { id: 4, title: 'Vex Try To Fly', desc: 'skill', releaseDate: '2026-06-19', popularity: 97, image: '', path: '/gamelist/vex-try-to-fly' },
+  { id: 5, title: 'Stumble Race', desc: 'running', releaseDate: '2026-06-19', popularity: 96, image: '', path: '/gamelist/stumble-race' },
+  { id: 6, title: 'Slope Rider', desc: 'racing', releaseDate: '2026-06-19', popularity: 96, image: '', path: '/gamelist/slope-rider' },
+  { id: 7, title: 'Speed Slope', desc: 'skill', releaseDate: '2026-06-19', popularity: 95, image: '', path: '/gamelist/speed-slope' },
+  { id: 8, title: 'Soccer Bros 2', desc: 'sports', releaseDate: '2026-06-19', popularity: 95, image: '', path: '/gamelist/soccer-bros-2' },
+  { id: 9, title: 'Volley.io', desc: 'sports', releaseDate: '2026-06-19', popularity: 94, image: '', path: '/gamelist/volley-io' },
+  { id: 10, title: 'Drift Rush', desc: 'racing', releaseDate: '2026-06-19', popularity: 94, image: '', path: '/gamelist/drift-rush' },
+  { id: 11, title: 'Traffic Road', desc: 'racing', releaseDate: '2026-06-19', popularity: 93, image: '', path: '/gamelist/traffic-road' },
+  { id: 12, title: 'Tap Road', desc: 'skill', releaseDate: '2026-06-19', popularity: 93, image: '', path: '/gamelist/tap-road' },
+  { id: 13, title: 'Golf Hit', desc: 'sports', releaseDate: '2026-06-19', popularity: 92, image: '', path: '/gamelist/golf-hit' },
+  { id: 14, title: 'RocketGoal.io', desc: 'sports', releaseDate: '2026-06-19', popularity: 92, image: '', path: '/gamelist/rocketgoal-io' },
+  { id: 15, title: 'Skate Dash', desc: 'racing', releaseDate: '2026-06-19', popularity: 91, image: '', path: '/gamelist/skate-dash' },
+  { id: 16, title: 'Stunt Bike Extreme', desc: 'racing', releaseDate: '2026-06-19', popularity: 91, image: '', path: '/gamelist/stunt-bike-extreme' },
+  { id: 17, title: 'Slope 2', desc: 'skill', releaseDate: '2026-06-19', popularity: 90, image: '', path: '/gamelist/slope-2' },
+  { id: 18, title: 'Speed Legends', desc: 'running', releaseDate: '2026-06-18', popularity: 89, image: '', path: '/gamelist/speed-legends' },
+  { id: 19, title: 'Sprinter', desc: 'running', releaseDate: '2026-06-18', popularity: 88, image: '', path: '/gamelist/sprinter' },
+  { id: 20, title: 'Athletics Hero', desc: 'running', releaseDate: '2026-06-18', popularity: 87, image: '', path: '/gamelist/athletics-hero' },
+  { id: 21, title: 'Hurdles', desc: 'running', releaseDate: '2026-06-18', popularity: 86, image: '', path: '/gamelist/hurdles' },
+  { id: 22, title: 'Run 3', desc: 'running', releaseDate: '2026-06-18', popularity: 85, image: '', path: '/gamelist/run-3' },
+  { id: 23, title: 'Running Fred', desc: 'running', releaseDate: '2026-06-18', popularity: 84, image: '', path: '/gamelist/running-fred' },
+  { id: 24, title: 'Vex', desc: 'skill', releaseDate: '2026-06-18', popularity: 83, image: '', path: '/gamelist/vex' },
+  { id: 25, title: 'Slope', desc: 'skill', releaseDate: '2026-06-18', popularity: 82, image: '', path: '/gamelist/slope' },
+  { id: 26, title: 'Tunnel Rush', desc: 'skill', releaseDate: '2026-06-18', popularity: 81, image: '', path: '/gamelist/tunnel-rush' },
+  { id: 27, title: 'Drive Mad', desc: 'racing', releaseDate: '2026-06-18', popularity: 80, image: '', path: '/gamelist/drive-mad' },
+  { id: 28, title: 'Drift Boss', desc: 'racing', releaseDate: '2026-06-18', popularity: 79, image: '', path: '/gamelist/drift-boss' },
+  { id: 29, title: 'Moto X3M', desc: 'racing', releaseDate: '2026-06-18', popularity: 78, image: '', path: '/gamelist/moto-x3m' },
+  { id: 30, title: 'Traffic Rider', desc: 'racing', releaseDate: '2026-06-18', popularity: 77, image: '', path: '/gamelist/traffic-rider' },
+  { id: 31, title: 'Geometry Dash', desc: 'skill', releaseDate: '2025-06-14', popularity: 76, image: '', path: '/gamelist/geometry-dash' },
+  { id: 32, title: 'Curve Rush', desc: 'skill', releaseDate: '2026-06-18', popularity: 75, image: '', path: '/gamelist/curve-rush' },
+  { id: 33, title: 'Soccer Random', desc: 'sports', releaseDate: '2026-06-18', popularity: 74, image: '', path: '/gamelist/soccer-random' },
+  { id: 34, title: 'Basket Random', desc: 'sports', releaseDate: '2026-06-18', popularity: 73, image: '', path: '/gamelist/basket-random' },
+  { id: 35, title: 'Volley Random', desc: 'sports', releaseDate: '2026-06-18', popularity: 72, image: '', path: '/gamelist/volley-random' },
+  { id: 36, title: 'Football Legends', desc: 'sports', releaseDate: '2026-06-18', popularity: 71, image: '', path: '/gamelist/football-legends' },
+  { id: 37, title: 'Basketball Stars', desc: 'sports', releaseDate: '2026-06-18', popularity: 70, image: '', path: '/gamelist/basketball-stars' },
 ];
 
 const legacyGames: Game[] = [
@@ -109,30 +171,33 @@ export default function GameList({ gameType }: { gameType?: string }) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-2 bg-slate-50">
-      {filteredGames.map((game) => (
-        <Card key={game.id} className="group relative overflow-hidden hover:shadow-xl transition-all rounded-xl border border-slate-200">
-          <div className="aspect-video relative bg-slate-200 overflow-hidden">
-            <a href={game.path} aria-label={`Play ${game.title}`}>
-              <img
-                src={game.image}
-                alt={`${game.title} online game`}
-                className="h-full w-full object-cover transition-transform group-hover:scale-105 cursor-pointer"
-                loading="lazy"
-                onError={(event) => {
-                  event.currentTarget.src = fallbackImage;
-                }}
-              />
-            </a>
-          </div>
-          <div className="p-4 bg-white/95 backdrop-blur-sm">
-            <div className="flex items-center justify-between gap-3">
-              <h3 className="text-lg font-bold text-gray-900">{game.title}</h3>
-              <span className="rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold uppercase text-blue-700">{game.desc}</span>
+      {filteredGames.map((game) => {
+        const generatedThumbnail = createGameThumbnail(game);
+        return (
+          <Card key={game.id} className="group relative overflow-hidden hover:shadow-xl transition-all rounded-xl border border-slate-200">
+            <div className="aspect-video relative bg-slate-200 overflow-hidden">
+              <a href={game.path} aria-label={`Play ${game.title}`}>
+                <img
+                  src={getCardImage(game)}
+                  alt={`${game.title} online game`}
+                  className="h-full w-full object-cover transition-transform group-hover:scale-105 cursor-pointer"
+                  loading="lazy"
+                  onError={(event) => {
+                    event.currentTarget.src = generatedThumbnail;
+                  }}
+                />
+              </a>
             </div>
-            <p className="text-gray-600 mt-2 text-sm">Play {game.title} online on SpeedStars1.</p>
-          </div>
-        </Card>
-      ))}
+            <div className="p-4 bg-white/95 backdrop-blur-sm">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-lg font-bold text-gray-900">{game.title}</h3>
+                <span className="rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold uppercase text-blue-700">{game.desc}</span>
+              </div>
+              <p className="text-gray-600 mt-2 text-sm">Play {game.title} online on SpeedStars1.</p>
+            </div>
+          </Card>
+        );
+      })}
     </div>
   );
 }
